@@ -1,8 +1,8 @@
-const router = require("express").Router(),
-  { User } = require("../models/"),
-  { check, validationResult } = require("express-validator"),
-  bcrypt = require("bcryptjs"),
-  jwt = require("jsonwebtoken");
+const router = require("express").Router();
+const { User } = require("../models/");
+const { check, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 // post
 // api/users
@@ -12,11 +12,9 @@ router.post(
   "/register",
 
   async (req, res) => {
-
     try {
       const { screenName, email, password } = req.body;
       let user = await User.findOne({ where: { email } });
-
 
       if (user) {
         return res
@@ -32,7 +30,25 @@ router.post(
 
       await user.save();
 
-      res.json({ msg: "Account Created!" });
+      // jwt
+      const payload = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      jwt.sign(
+        payload,
+        process.env.jwtSecret,
+        { expiresIn: "360000" },
+        (err, token) => {
+          if (err) {
+            console.error(err.message);
+          } else {
+            res.json({ token });
+          }
+        }
+      );
     } catch (err) {
       res.status(500).json({ msg: err.message });
     }

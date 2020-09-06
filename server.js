@@ -1,5 +1,6 @@
 const express = require("express"),
   db = require("./db"),
+  dotenv = require("dotenv");
   morgan = require("morgan"),
   bodyParser = require("body-parser"),
   app = express();
@@ -7,6 +8,7 @@ const express = require("express"),
 app.use((morgan('combined')))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+dotenv.config({ path: "./.env" });
 
 // routes
 app.use("/api/users", require("./routes/userRoutes"));
