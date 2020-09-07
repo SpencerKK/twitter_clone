@@ -1,16 +1,36 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 
 // redux
 import { connect } from "react-redux";
 import { register } from "../actions/auth";
 
-const WelcomePage = ({ register }) => {
+const WelcomePage = ({ register, isAuthenticated }) => {
    const [regData, setRegData] = useState({
       screenName: "",
       emai: "",
       password: "",
       password2: "",
    });
+
+   const { screenName, email, password } = regData;
+
+   const onReigster = async e => {
+      e.preventDefault();
+      if (password !== regData.password2) {
+         alert("Passwords must match")
+      } else {
+         register({ screenName, email, password })
+      }
+   }
+
+   const onChange = (e) => {
+      setRegData({ ...regData, [e.target.name]: e.target.value });
+   };
+
+   if (isAuthenticated) {
+      return <Redirect to="/home" />
+   }
 
    return (
       <div className="welcome-wrapper">
@@ -19,33 +39,32 @@ const WelcomePage = ({ register }) => {
             <p>
                Stay in the loop. <br /> Join & start posting
             </p>
-            <form>
+            <form onSubmit={e => onReigster(e)}>
                <input
                   type="text"
                   name="screenName"
                   placeholder="Screen Name"
                   autoComplete="none"
-                  onChange={() => console.log("Changed")}
+                  onChange={(e) => onChange(e)}
                />
                <input
                   type="text"
                   name="email"
-                  readonly="readonly"
                   placeholder="Email"
-                  onChange={() => console.log("Changed")}
+                  onChange={(e) => onChange(e)}
                />
                <input
                   type="password"
                   name="password"
                   placeholder="Password"
-                  onChange={() => console.log("Changed")}
+                  onChange={(e) => onChange(e)}
                />
                <input
                   type="password"
                   name="password2"
                   placeholder="Password Confirm"
                   autoComplete="none"
-                  onChange={() => console.log("Changed")}
+                  onChange={(e) => onChange(e)}
                />
                <input id="register-btn" type="submit" value="Submit" />
             </form>

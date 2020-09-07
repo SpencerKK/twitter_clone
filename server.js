@@ -2,10 +2,12 @@ const express = require("express"),
   db = require("./db"),
   dotenv = require("dotenv");
   morgan = require("morgan"),
+  cors = require("cors");
   bodyParser = require("body-parser"),
   app = express();
 
 app.use((morgan('combined')))
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 dotenv.config({ path: "./.env" });

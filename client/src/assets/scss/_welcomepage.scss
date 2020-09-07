@@ -35,7 +35,7 @@
             width: 16em;
 
             &:focus {
-                outline: none;
+                outline: 1px solid $main-blue;
             }
          }
 

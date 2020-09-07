@@ -7,6 +7,28 @@ import {
    LOGIN_FAIL,
 } from "./types";
 import axios from "axios";
+import setAuthToken from "../utils/setAuthToken";
+
+// load user
+export const loadUser = () => async dispatch => {
+   if (localStorage.token) {
+      setAuthToken(localStorage.token);
+   }
+
+   try {
+      const res = await axios.get("http://localhost:5010/api/users");
+
+      dispatch({
+         type: USER_LOADED,
+         payload: res.data
+      })
+
+   } catch (err) {
+      dispatch({
+         type: AUTH_ERROR
+      })
+   }
+}
 
 // register user
 export const register = ({ screenName, email, password }) => async (
@@ -27,16 +49,17 @@ export const register = ({ screenName, email, password }) => async (
          config
       );
 
-        dispatch({
-            type: REGISTER_SUCCESS,
-            payload: res.data
-        })
+      dispatch({
+         type: REGISTER_SUCCESS,
+         payload: res.data,
+      });
 
+      dispatch(loadUser());
    } catch (err) {
       const errors = err.response.data.errors;
 
       if (errors) {
-         alert(errors[0].msg);
+         errors.forEach((error) => alert(error.msg));
       }
 
       dispatch({
