@@ -5,6 +5,8 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../actions/auth";
 
+import SignInModal from "./layout/SignInModal";
+
 const WelcomePage = ({ register, isAuthenticated }) => {
    const [regData, setRegData] = useState({
       screenName: "",
@@ -15,21 +17,21 @@ const WelcomePage = ({ register, isAuthenticated }) => {
 
    const { screenName, email, password } = regData;
 
-   const onReigster = async e => {
+   const onReigster = async (e) => {
       e.preventDefault();
       if (password !== regData.password2) {
-         alert("Passwords must match")
+         alert("Passwords must match");
       } else {
-         register({ screenName, email, password })
+         register({ screenName, email, password });
       }
-   }
+   };
 
    const onChange = (e) => {
       setRegData({ ...regData, [e.target.name]: e.target.value });
    };
 
    if (isAuthenticated) {
-      return <Redirect to="/home" />
+      return <Redirect to="/home" />;
    }
 
    return (
@@ -37,14 +39,13 @@ const WelcomePage = ({ register, isAuthenticated }) => {
          <div className="welcome-form">
             <h1>Coolr</h1>
             <p>
-               Stay in the loop. <br /> Join & start posting
+               The digital Water Cooler <br /> Join & start posting
             </p>
-            <form onSubmit={e => onReigster(e)}>
+            <form onSubmit={(e) => onReigster(e)}>
                <input
                   type="text"
                   name="screenName"
                   placeholder="Screen Name"
-                  autoComplete="none"
                   onChange={(e) => onChange(e)}
                />
                <input
@@ -54,6 +55,7 @@ const WelcomePage = ({ register, isAuthenticated }) => {
                   onChange={(e) => onChange(e)}
                />
                <input
+                  autocomplete="new-password"
                   type="password"
                   name="password"
                   placeholder="Password"
@@ -68,10 +70,7 @@ const WelcomePage = ({ register, isAuthenticated }) => {
                />
                <input id="register-btn" type="submit" value="Submit" />
             </form>
-            <div className="signin-option">
-               <p>already have an account?</p>
-               <p id="signin-p">Sign In</p>
-            </div>
+            <SignInModal />
          </div>
          <div className="welcome-footer">
             <p>
