@@ -1,3 +1,88 @@
-.welcome-page-wrapper {
-    color: $main-blue;
+.welcome-wrapper {
+   background: url("../images/dominik-schroder-FIKD9t5_5zQ-unsplash.jpg");
+   height: 100vh;
+   background-size: cover;
+   background-position: center;
+
+   .welcome-form {
+      text-align: center;
+      padding-top: 20vh;
+
+      h1 {
+         margin: 0;
+         font-size: 4em;
+      }
+
+      p {
+          margin: 0;
+          font-weight: 300;
+      }
+
+      form {
+         display: flex;
+         justify-content: center;
+         flex-direction: column;
+         align-items: center;
+
+         input {
+            font-size: 0.9em;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin: 0.5em 0;
+            padding-left: 0.5em;
+            height: 2.5em;
+            width: 16em;
+
+            &:focus {
+                outline: none;
+            }
+         }
+
+         #register-btn {
+             width: 10em;
+             color: #fff;
+             background-color: #000;
+
+             &:hover {
+                 cursor: pointer;
+                 color: #000;
+                 background: $main-blue;
+             }
+         }
+      }
+   }
+
+   .welcome-footer {
+    position: fixed;
+    bottom: 0;
+    background: #000;
+    color: #fff;
+    width: 100vw;
+    display: flex;
+    font-size: 0.8em;
+    
+    p {
+        margin: 0;
+        padding: 0 0.5em;
+        font-weight: 300;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+
+        &:hover {
+            cursor: pointer;
+            color: $main-blue;
+        }
+    }
+   }
+}
+
+@media screen and (max-width: 600px) {
+.welcome-wrapper {
+    .welcome-form {
+        padding-top: 10vh;
+    }
+}
 }
