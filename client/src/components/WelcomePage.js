@@ -45,12 +45,17 @@ const WelcomePage = () => {
                />
                <input id="register-btn" type="submit" value="Submit" />
             </form>
+            <div className="signin-option">
+               <p>already have an account?</p>
+               <p id="signin-p">Sign In</p>
+            </div>
          </div>
          <div className="welcome-footer">
             <p>
                Built by{" "}
                <a href="https://spencerkenealy.com/">Spencer Kenealy</a>
             </p>
+
             <a href="https://github.com/SpencerKK">
                <i className="fab fa-github-alt"></i>
             </a>

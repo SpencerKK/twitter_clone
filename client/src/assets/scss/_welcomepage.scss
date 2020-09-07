@@ -16,6 +16,7 @@
       p {
           margin: 0;
           font-weight: 300;
+          margin-bottom: 1em;
       }
 
       form {
@@ -49,6 +50,25 @@
                  background: $main-blue;
              }
          }
+      }
+
+      .signin-option {
+          p {
+              font-size: 0.7em;
+              margin: 0;
+          }
+
+          #signin-p {
+              font-weight: 500;
+              width: 5em;
+              margin: 0 auto;
+            
+
+              &:hover {
+                  cursor: pointer;
+                  color: $main-blue;
+              }
+          }
       }
    }
 
