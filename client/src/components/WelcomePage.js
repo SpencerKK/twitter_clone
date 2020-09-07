@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-const WelcomePage = () => {
+// redux
+import { connect } from "react-redux";
+import { register } from "../actions/auth";
+
+const WelcomePage = ({ register }) => {
    const [regData, setRegData] = useState({
       screenName: "",
       emai: "",
@@ -64,4 +68,8 @@ const WelcomePage = () => {
    );
 };
 
-export default WelcomePage;
+const mapStateToProps = (state) => ({
+   isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { register })(WelcomePage);
