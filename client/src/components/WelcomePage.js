@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 
+// components
+import LoginForm from "./layout/LoginForm";
+
 // redux
 import { connect } from "react-redux";
 import { register } from "../actions/auth";
 
 const WelcomePage = ({ register, isAuthenticated }) => {
+   const [authOption, setAuthOption] = useState(true);
    const [regData, setRegData] = useState({
       screenName: "",
       emai: "",
@@ -14,6 +18,10 @@ const WelcomePage = ({ register, isAuthenticated }) => {
    });
 
    const { screenName, email, password } = regData;
+
+   const onChange = (e) => {
+      setRegData({ ...regData, [e.target.name]: e.target.value });
+   };
 
    const onReigster = async (e) => {
       e.preventDefault();
@@ -24,9 +32,9 @@ const WelcomePage = ({ register, isAuthenticated }) => {
       }
    };
 
-   const onChange = (e) => {
-      setRegData({ ...regData, [e.target.name]: e.target.value });
-   };
+   const toggleAuthOption = () => {
+      setAuthOption(!authOption);
+   }
 
    if (isAuthenticated) {
       return <Redirect to="/home" />;
@@ -39,38 +47,57 @@ const WelcomePage = ({ register, isAuthenticated }) => {
             <p>
                The digital Water Cooler <br /> Join & start posting
             </p>
-            <form onSubmit={(e) => onReigster(e)}>
-               <input
-                  type="text"
-                  name="screenName"
-                  placeholder="Screen Name"
-                  onChange={(e) => onChange(e)}
-               />
-               <input
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                  onChange={(e) => onChange(e)}
-               />
-               <input
-                  autoComplete="new-password"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  onChange={(e) => onChange(e)}
-               />
-               <input
-                  type="password"
-                  name="password2"
-                  placeholder="Password Confirm"
-                  onChange={(e) => onChange(e)}
-               />
-               <input id="register-btn" type="submit" value="Submit" />
-            </form>
+            {authOption ? (
+               <form onSubmit={(e) => onReigster(e)}>
+                  <input
+                     type="text"
+                     name="screenName"
+                     placeholder="Screen Name"
+                     onChange={(e) => onChange(e)}
+                  />
+                  <input
+                     type="text"
+                     name="email"
+                     placeholder="Email"
+                     onChange={(e) => onChange(e)}
+                  />
+                  <input
+                     autoComplete="new-password"
+                     type="password"
+                     name="password"
+                     placeholder="Password"
+                     onChange={(e) => onChange(e)}
+                  />
+                  <input
+                     type="password"
+                     name="password2"
+                     placeholder="Password Confirm"
+                     onChange={(e) => onChange(e)}
+                  />
+                  <input id="register-btn" type="submit" value="Register" />
+               </form>
+            ) : (
+               <LoginForm />
+            )}
          </div>
+
+         <div className="auth-option-toggle">
+            {authOption ? (
+               <>
+                  <p>Already Have an Account?</p>
+                  <p className="auth-action" onClick={() => toggleAuthOption()}>Sign In</p>
+               </>
+            ) : (
+               <>
+                  <p>New User?</p>
+                  <p className="auth-action" onClick={() => toggleAuthOption()}>Register</p>
+               </>
+            )}
+         </div>
+
          <div className="welcome-footer">
             <p>
-               Built by{" "}
+               Built by
                <a href="https://spencerkenealy.com/">Spencer Kenealy</a>
             </p>
 

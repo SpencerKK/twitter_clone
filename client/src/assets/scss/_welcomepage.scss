@@ -14,9 +14,9 @@
       }
 
       p {
-          margin: 0;
-          font-weight: 300;
-          margin-bottom: 1em;
+         margin: 0;
+         font-weight: 300;
+         margin-bottom: 1em;
       }
 
       form {
@@ -35,55 +35,78 @@
             width: 16em;
 
             &:focus {
-                outline: 1px solid $main-blue;
+               outline: 1px solid $main-blue;
             }
          }
 
          #register-btn {
-             width: 10em;
-             color: #fff;
-             background-color: #000;
+            width: 10em;
+            color: #fff;
+            background-color: #000;
 
-             &:hover {
-                 cursor: pointer;
-                 color: #000;
-                 background: $main-blue;
-             }
+            &:hover {
+               cursor: pointer;
+               color: #000;
+               background: $main-blue;
+            }
          }
       }
    }
 
+   .auth-option-toggle {
+      text-align: center;
+      font-size: 0.8em;
+
+
+      p {
+         margin: 0;
+         font-weight: 300;
+
+      }
+
+      .auth-action {
+          font-weight: 800;
+          width: 5em;
+          margin: 0 auto;
+
+          &:hover {
+              cursor: pointer;
+              color: $main-blue;
+          }
+      }
+   }
+
    .welcome-footer {
-    position: fixed;
-    bottom: 0;
-    background: purple;
-    color: #fff;
-    width: 100vw;
-    display: flex;
-    font-size: 0.8em;
-    
-    p {
-        margin: 0;
-        padding: 0 0.5em;
-        font-weight: 300;
-    }
+      position: fixed;
+      bottom: 0;
+      background: purple;
+      color: #fff;
+      width: 100vw;
+      display: flex;
+      font-size: 0.8em;
 
-    a {
-        color: #fff;
-        text-decoration: none;
+      p {
+         margin: 0;
+         padding: 0 0.5em;
+         font-weight: 300;
+      }
 
-        &:hover {
+      a {
+         color: #fff;
+         text-decoration: none;
+
+         &:hover {
             cursor: pointer;
             color: $main-blue;
-        }
-    }
+         }
+      }
    }
 }
 
 @media screen and (max-width: 600px) {
-.welcome-wrapper {
-    .welcome-form {
-        padding-top: 10vh;
-    }
-}
+   .welcome-wrapper {
+      .welcome-form {
+         padding-top: 10vh;
+      }
+   }
 }
