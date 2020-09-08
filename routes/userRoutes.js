@@ -12,8 +12,19 @@ const jwt = require("jsonwebtoken");
 // public
 router.post(
   "/register",
-
+  [
+    check("email", "Please include a valid email to register").isEmail(),
+    check("screenName", "You must include a screenName with at least 5 characters").isLength({ min: 5 }),
+    check("password", "Please include a password with at least 6 characters").isLength({ min: 6 })
+  ],
   async (req, res) => {
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     try {
       const { screenName, email, password } = req.body;
       let user = await User.findOne({ where: { email } });
