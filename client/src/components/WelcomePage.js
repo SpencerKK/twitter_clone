@@ -5,8 +5,6 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../actions/auth";
 
-import SignInModal from "./layout/SignInModal";
-
 const WelcomePage = ({ register, isAuthenticated }) => {
    const [regData, setRegData] = useState({
       screenName: "",
@@ -55,7 +53,7 @@ const WelcomePage = ({ register, isAuthenticated }) => {
                   onChange={(e) => onChange(e)}
                />
                <input
-                  autocomplete="new-password"
+                  autoComplete="new-password"
                   type="password"
                   name="password"
                   placeholder="Password"
@@ -65,12 +63,10 @@ const WelcomePage = ({ register, isAuthenticated }) => {
                   type="password"
                   name="password2"
                   placeholder="Password Confirm"
-                  autoComplete="none"
                   onChange={(e) => onChange(e)}
                />
                <input id="register-btn" type="submit" value="Submit" />
             </form>
-            <SignInModal />
          </div>
          <div className="welcome-footer">
             <p>
