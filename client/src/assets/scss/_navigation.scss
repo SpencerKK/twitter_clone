@@ -13,8 +13,8 @@
         margin-top: 0;
   
         #nav-site-logo {
-          width: 1.7em;
-          margin-left: 1.1em;
+          width: 1em;
+          margin-left: 1.3em;
         }
   
         li {
@@ -27,6 +27,7 @@
   
           i {
             padding-right: 1em;
+            font-size: 0.9em;
           }
   
           a {
@@ -35,7 +36,7 @@
             width: 100%;
             color: #000;
             font-size: 1.2em;
-            font-weight: 700;
+            font-weight: 600;
             padding: 0.4em 1em;
             border-radius: 20px;
   
@@ -49,7 +50,7 @@
     }
   }
   
-  @media screen and (max-width: 1102px) {
+  @media screen and (max-width: 1224px) {
     .site-nav {
       .menu-content-container {
         width: 80%;
