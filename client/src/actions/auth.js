@@ -5,12 +5,13 @@ import {
    USER_LOADED,
    LOGIN_SUCCESS,
    LOGIN_FAIL,
+   LOGOUT
 } from "./types";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 
 // load user
-export const loadUser = () => async dispatch => {
+export const loadUser = () => async (dispatch) => {
    if (localStorage.token) {
       setAuthToken(localStorage.token);
    }
@@ -20,15 +21,14 @@ export const loadUser = () => async dispatch => {
 
       dispatch({
          type: USER_LOADED,
-         payload: res.data
-      })
-
+         payload: res.data,
+      });
    } catch (err) {
       dispatch({
-         type: AUTH_ERROR
-      })
+         type: AUTH_ERROR,
+      });
    }
-}
+};
 
 // register user
 export const register = ({ screenName, email, password }) => async (
@@ -72,9 +72,9 @@ export const register = ({ screenName, email, password }) => async (
 export const login = ({ email, password }) => async (dispatch) => {
    const config = {
       headers: {
-         "Content-Type": "application/json"
-      }
-   }
+         "Content-Type": "application/json",
+      },
+   };
 
    const body = JSON.stringify({ email, password });
 
@@ -87,21 +87,23 @@ export const login = ({ email, password }) => async (dispatch) => {
 
       dispatch({
          type: LOGIN_SUCCESS,
-         payload: res.data
-      })
+         payload: res.data,
+      });
 
       dispatch(loadUser());
-
    } catch (err) {
       const errors = err.response.data.errors;
 
       if (errors) {
-         errors.forEach(error => alert(error.msg));
+         errors.forEach((error) => alert(error.msg));
       }
 
       dispatch({
-         type: LOGIN_FAIL
-      })
+         type: LOGIN_FAIL,
+      });
    }
+};
 
-}
+export const logout = () => dispatch => {
+   dispatch({ type: LOGOUT });
+ };
