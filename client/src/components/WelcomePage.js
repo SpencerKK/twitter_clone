@@ -98,7 +98,7 @@ const WelcomePage = ({ register, isAuthenticated }) => {
          <div className="welcome-footer">
             <p>
                Built by
-               <a href="https://spencerkenealy.com/">Spencer Kenealy</a>
+               <a href="https://spencerkenealy.com/"> Spencer Kenealy</a>
             </p>
 
             <a href="https://github.com/SpencerKK">

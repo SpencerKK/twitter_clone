@@ -1,77 +1,77 @@
 .site-nav {
-    height: 100vh;
-    border-right: 1px solid $border-color;
-  
-    .menu-content-container {
+   height: 100vh;
+   border-right: 1px solid $border-color;
+
+   .menu-content-container {
       height: 100%;
       margin-top: 1em;
-  
+
       ul {
-        list-style-type: none;
-        float: right;
-        padding-right: 4em;
-        margin-top: 0;
-  
-        #nav-site-logo {
-          width: 1em;
-          margin-left: 1.3em;
-        }
-  
-        li {
-          color: #000;
-          margin: 1.5em auto 2em auto;
-  
-          p {
-            display: inline;
-          }
-  
-          i {
-            padding-right: 1em;
-            font-size: 0.9em;
-          }
-  
-          a {
-            text-decoration: none;
-            // display: block;
-            width: 100%;
+         list-style-type: none;
+         float: right;
+         padding-right: 4em;
+         margin-top: 0;
+
+         #nav-site-logo {
+            width: 1em;
+            margin-left: 1.3em;
+         }
+
+         li {
             color: #000;
-            font-size: 1.2em;
-            font-weight: 600;
-            padding: 0.4em 1em;
-            border-radius: 20px;
-  
-            &:hover {
-              background: #24aff02c;
-              color: $main-blue;
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  @media screen and (max-width: 1224px) {
-    .site-nav {
-      .menu-content-container {
-        width: 80%;
-        margin: 1em auto 0 auto;
-        ul {
-          padding-right: 0;
-  
-          h1 {
-            margin-left: 0.6em;
-          }
-  
-          li {
+            margin: 1.5em auto 2em auto;
+
             p {
-              display: none !important;
+               display: inline;
             }
-  
+
             i {
-              padding-right: 0;
+               padding-right: 1em;
+               font-size: 0.9em;
             }
-          }
-        }
+
+            a {
+               text-decoration: none;
+               // display: block;
+               width: 100%;
+               color: #000;
+               font-size: 1.2em;
+               font-weight: 600;
+               padding: 0.4em 1em;
+               border-radius: 20px;
+
+               &:hover {
+                  background: #24aff02c;
+                  color: $main-blue;
+               }
+            }
+         }
       }
-    }
-  }
+   }
+}
+
+@media screen and (max-width: 1224px) {
+   .site-nav {
+      .menu-content-container {
+         width: 80%;
+         margin: 1em auto 0 auto;
+         ul {
+            padding-right: 0;
+
+            h1 {
+               margin-left: 0.6em;
+            }
+
+            li {
+               p {
+                  display: none !important;
+               }
+
+               i {
+                  padding-right: 0;
+               }
+            }
+         }
+      }
+   }
+}
