@@ -1,13 +1,15 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
+import PostCard from "./layout/PostCard";
 
 const MainStream = () => {
-    const textAreaRef = useRef(null);
-    let heightLimit = 500;
+   const textAreaRef = useRef(null);
+   let heightLimit = 500;
 
-    const onAreaType = () => {
-        textAreaRef.current.style.height = "";
-        textAreaRef.current.style.height = Math.min(textAreaRef.current.scrollHeight, heightLimit) + "px";
-    }
+   const onAreaType = () => {
+      textAreaRef.current.style.height = "";
+      textAreaRef.current.style.height =
+         Math.min(textAreaRef.current.scrollHeight, heightLimit) + "px";
+   };
 
    return (
       <div className="main-stream-wrapper">
@@ -19,9 +21,9 @@ const MainStream = () => {
                      <i className="fas fa-user"></i>
                   </div>
                   <textarea
-                    ref={textAreaRef}
-                    // style={{ backgroundColor: "pink" }}
-                    onChange={onAreaType}
+                     ref={textAreaRef}
+                     // style={{ backgroundColor: "pink" }}
+                     onChange={onAreaType}
                      placeholder="What's Happening..."
                   ></textarea>
                </div>
@@ -34,11 +36,10 @@ const MainStream = () => {
                </div>
             </form>
          </div>
-         {/* <div className="post-stream">
-      <p>PostCard</p>
-      <p>PostCard</p>
-      <p>PostCard</p>
-    </div> */}
+         <div className="post-stream">
+            <PostCard />
+            <PostCard />
+         </div>
       </div>
    );
 };
