@@ -6,3 +6,15 @@
       grid-template-columns: auto 33em auto;
    }
 }
+
+
+@media screen and (max-width: 600px) { 
+    .home-wrapper {
+        margin-right: 0;
+
+        .home-center-container {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+    }
+}

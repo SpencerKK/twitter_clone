@@ -57,10 +57,7 @@
          margin: 1em auto 0 auto;
          ul {
             padding-right: 0;
-
-            h1 {
-               margin-left: 0.6em;
-            }
+            padding-left: 1em;
 
             li {
                p {
@@ -69,6 +66,39 @@
 
                i {
                   padding-right: 0;
+               }
+            }
+         }
+      }
+   }
+}
+
+@media screen and (max-width: 600px) {
+   .site-nav {
+      border-right: none;
+      height: 0;
+
+      .menu-content-container {
+         width: 100vw;
+         ul {
+            padding-right: 0;
+            width: 100vw;
+            display: flex;
+            background-color: red;
+
+            #nav-site-logo {
+               display: none;
+            }
+
+            li {
+               display: inline;
+               p {
+                  display: none !important;
+               }
+
+               i {
+                  padding-right: 0;
+                  display: inline;
                }
             }
          }
