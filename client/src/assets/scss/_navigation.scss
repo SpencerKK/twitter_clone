@@ -76,7 +76,9 @@
 @media screen and (max-width: 600px) {
    .site-nav {
       border-right: none;
-      height: 0;
+      position: fixed;
+      bottom: 0;
+      height: 4em;
 
       .menu-content-container {
          width: 100vw;

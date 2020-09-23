@@ -10,9 +10,9 @@ import MainStream from "./MainStream";
 import RightBar from "./RightBar";
 
 const Home = ({ isAuthenticated }) => {
-   if (!isAuthenticated) {
-      return <Redirect to="/" />;
-   }
+   // if (!isAuthenticated) {
+   //    return <Redirect to="/" />;
+   // }
 
    return (
       <div className="home-wrapper">
