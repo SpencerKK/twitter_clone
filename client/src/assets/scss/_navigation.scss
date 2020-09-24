@@ -1,6 +1,10 @@
 .site-nav {
    height: 100vh;
    border-right: 1px solid $border-color;
+   background-color: #fff;
+   position: sticky;
+   top: 0;
+
 
    .menu-content-container {
       height: 100%;
@@ -57,7 +61,7 @@
          margin: 1em auto 0 auto;
          ul {
             padding-right: 0;
-            padding-left: 1em; 
+            padding-left: 1em;
 
             li {
                a {
@@ -78,10 +82,10 @@
 @media screen and (max-width: 600px) {
    .site-nav {
       border-right: none;
-      position: fixed;
+      position: sticky;
       bottom: 0;
       height: 3em;
-    border-top: 1px solid $border-color;
+      border-top: 1px solid $border-color;
 
       .menu-content-container {
          width: 100vw;
@@ -99,9 +103,8 @@
 
             li {
                display: inline;
-               
-               a {
 
+               a {
                   p {
                      display: none !important;
                   }
