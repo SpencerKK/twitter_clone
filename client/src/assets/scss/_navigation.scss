@@ -5,7 +5,6 @@
    position: sticky;
    top: 0;
 
-
    .menu-content-container {
       height: 100%;
       margin-top: 1em;
@@ -81,21 +80,20 @@
 
 @media screen and (max-width: 600px) {
    .site-nav {
-      border-right: none;
-      position: sticky;
       bottom: 0;
       height: 3em;
       border-top: 1px solid $border-color;
 
       .menu-content-container {
-         width: 100vw;
-         display: flex;
-         align-items: center;
+         height: auto;
+
          ul {
-            padding-right: 0;
+            width: auto;
             padding-left: 0;
-            width: 100vw;
-            display: flex;
+            float: none;
+            text-align: center;
+            background: transparent;
+            margin: 0;
 
             #nav-site-logo {
                display: none;
@@ -103,17 +101,6 @@
 
             li {
                display: inline;
-
-               a {
-                  p {
-                     display: none !important;
-                  }
-
-                  i {
-                     padding-right: 0;
-                     display: inline;
-                  }
-               }
             }
          }
       }

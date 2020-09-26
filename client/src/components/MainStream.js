@@ -45,6 +45,14 @@ const MainStream = () => {
             <PostCard />
             <PostCard />
             <PostCard />
+            <PostCard />
+            <PostCard />
+            <PostCard />
+            <PostCard />
+            <PostCard />
+            <PostCard />
+            <PostCard />
+            <PostCard />
          </div>
       </div>
    );
