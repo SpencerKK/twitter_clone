@@ -86,6 +86,7 @@
 
       .menu-content-container {
          height: auto;
+         width: 100%;
 
          ul {
             width: auto;
@@ -94,6 +95,7 @@
             text-align: center;
             background: transparent;
             margin: 0;
+            width: 100%;
 
             #nav-site-logo {
                display: none;
