@@ -5,3 +5,7 @@ export const USER_LOADED = "USER_LOADED";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
+
+export const CREATE_POST_SUCCESS = "CREATE_POST_SUCCESS";
+export const CREATE_POST_FAIL = "CREATE_POST_FAIL";
+
