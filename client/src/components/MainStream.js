@@ -1,29 +1,38 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import PostCard from "./layout/PostCard";
+import { createPost } from "../actions/post";
+import { connect } from "react-redux";
 
-const MainStream = () => {
+const MainStream = ({ createPost }) => {
+   const [postContent, setPostContent] = useState("");
    const textAreaRef = useRef(null);
    let heightLimit = 500;
 
-   const onAreaType = () => {
+   const onAreaType = (e) => {
       textAreaRef.current.style.height = "";
       textAreaRef.current.style.height =
          Math.min(textAreaRef.current.scrollHeight, heightLimit) + "px";
+
+      setPostContent(e.target.value);
+   };
+
+   const onPostSubmit = (e, postContent) => {
+      e.preventDefault();
+      createPost({ content: postContent })
    };
 
    return (
       <div className="main-stream-wrapper">
          <div className="main-stream-header">
             <p>Home</p>
-            <form>
+            <form onSubmit={(e) => onPostSubmit(e, postContent)}>
                <div className="home-textarea-wrapper">
                   <div className="icon-holder">
                      <i className="fas fa-user"></i>
                   </div>
                   <textarea
                      ref={textAreaRef}
-                     // style={{ backgroundColor: "pink" }}
-                     onChange={onAreaType}
+                     onChange={(e) => onAreaType(e)}
                      placeholder="What's Happening..."
                   ></textarea>
                </div>
@@ -58,4 +67,4 @@ const MainStream = () => {
    );
 };
 
-export default MainStream;
+export default connect(null, { createPost })(MainStream);
