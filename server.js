@@ -21,6 +21,6 @@ db.sync({
   logging: console.log,
   // force: true,
 })
-  .then(() => app.listen(process.env.PORT || 5010))
+  .then(() => app.listen(process.env.PORT || 5000))
   .then(() => console.log("successfully connected to mysql"))
   .catch((err) => console.error(err));

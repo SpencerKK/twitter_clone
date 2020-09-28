@@ -16,7 +16,7 @@ export const createPost = ({ content }) => async (dispatch) => {
 
     try {
         const res = await axios.post(
-            "http://localhost:5010/api/posts/post",
+            "http://localhost:5000/api/posts/post",
             body,
             config
         )

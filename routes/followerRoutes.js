@@ -1,7 +1,6 @@
-const route = require("express").Router();
+const router = require("express").Router();
 const { Followers } = require("../models");
 const authMid = require("../middleware/authMid");
-const router = require("./postRoutes");
 
 // post
 // /api/follows/follow/:id
