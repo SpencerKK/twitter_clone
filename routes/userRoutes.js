@@ -50,6 +50,7 @@ router.post(
       const payload = {
         user: {
           id: user.id,
+          screenName
         },
       };
 
@@ -80,7 +81,6 @@ router.post("/login", [
   check("password", "You must include your valid password to login").not().isEmpty()
 ], async (req, res) => {
 
-  let user_id;
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -99,7 +99,8 @@ router.post("/login", [
     
 
     if (user) {
-      user_id = user.id;
+      id = user.id;
+      screenName = user.screenName;
     } else {
       return res.status(400).json({ errors: [{ msg: "User with those credentials does not exist..." }] })
     }
@@ -113,7 +114,8 @@ router.post("/login", [
       // jwt
       const payload = {
         user: {
-          id: user.id,
+          id,
+          screenName
         },
       };
 
