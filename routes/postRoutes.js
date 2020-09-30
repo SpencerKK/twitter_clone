@@ -48,7 +48,7 @@ router.get("/getFollowingPosts", authMid, async (req, res) => {
          },
       });
 
-      let followedUserIds = isFollowing.map(n => n.followed_user_id);
+      let followedUserIds = isFollowing.map(n => n.followed_id);
 
       let isFollowingPosts = await Post.findAll({
          where: {
