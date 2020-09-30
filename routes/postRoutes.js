@@ -23,6 +23,7 @@ router.post(
          let post = await Post.create({
             content: req.body.content,
             userId: req.user.id,
+            screenName: req.user.screenName
          });
 
          res.json({ post });

@@ -6,6 +6,10 @@ Post.init({
     content: {
         type: DataTypes.STRING, 
         allowNull: false
+    }, 
+    screenName: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, { sequelize, modelName: "posts" })
 
