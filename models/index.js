@@ -13,7 +13,7 @@ Post.belongsTo(User);
 User.belongsToMany(User, {
     as: "followed_user",
     through: Followers,
-    foreignKey: "followed_user_id",
+    foreignKey: "followed_id",
     otherKey: "follower_id"
 });
 
@@ -22,7 +22,7 @@ User.belongsToMany(User, {
     as: "follower",
     through: Followers,
     foreignKey: "follower_id",
-    otherKey: "followed_user_id"
+    otherKey: "followed_id"
 })
 
 

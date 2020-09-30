@@ -10,9 +10,9 @@ router.post("/follow/:id", authMid, async (req, res) => {
     try {
 
         let follower_id = req.user.id;
-        let followed_user_id = req.params.id;
+        let followed_id = req.params.id;
 
-        let followInstance = await Followers.create({ follower_id, followed_user_id});
+        let followInstance = await Followers.create({ follower_id, followed_id});
             
         res.json({ followInstance });
 
