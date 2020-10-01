@@ -1,6 +1,6 @@
 import React from "react";
 
-const PostCard = () => {
+const PostCard = ({ screenName, postContent }) => {
    return (
       <div className="post-card">
          <div className="post-body">
@@ -9,11 +9,10 @@ const PostCard = () => {
             </div>
             <div className="post-content">
                <div className="post-card-username">
-                  <p>PersonWhoPosts</p>
+                  <p>{screenName}</p>
                </div>
                <div className="post-text">
-                  Magna elit nisi do excepteur aute eu do aute. Magna elit nisi
-                  do excepteur aute eu do aute.
+                  <p>{postContent}</p>
                </div>
             </div>
          </div>

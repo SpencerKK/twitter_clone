@@ -24,7 +24,7 @@ const Content = ({ getFollowingPosts, followingPosts }) => {
             <>
                {
                   followingPosts && followingPosts.map(post => (
-                     <PostCard post={post} />
+                     <PostCard postContent={post.content} screenName={post.screenName} />
                   ))   
                }
             </>
