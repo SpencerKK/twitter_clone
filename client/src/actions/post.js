@@ -1,6 +1,6 @@
 import {
     CREATE_POST_SUCCESS,
-    CREATE_POST_FAIL,
+    CREATE_POST_FAIL
 } from "./types";
 import axios from "axios";
 
@@ -38,3 +38,5 @@ export const createPost = ({ content }) => async (dispatch) => {
         })
     }
 }
+
+
