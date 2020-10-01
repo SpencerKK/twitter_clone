@@ -1,6 +1,6 @@
 import {
     GET_FOLLOWING_POSTS,
-    GET_FOLLOWING_POSTS_FAIL
+    GET_FOLLOWING_POSTS_FAIL,
 } from "./types";
 import axios from "axios";
 

@@ -1,6 +1,7 @@
 import {
     GET_FOLLOWING_POSTS,
-    GET_FOLLOWING_POSTS_FAIL
+    GET_FOLLOWING_POSTS_FAIL,
+    LOGOUT
 } from "../actions/types";
 
 const initialState = {
@@ -15,6 +16,7 @@ export default (state = initialState, action) => {
                 isFollowingPosts: action.payload.isFollowingPosts
             }
         case GET_FOLLOWING_POSTS_FAIL:
+        case LOGOUT:
             return {
                 ...state,
                 isFollowingPosts: null

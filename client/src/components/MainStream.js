@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react";
-import PostCard from "./layout/PostCard";
 import { createPost } from "../actions/post";
 import { connect } from "react-redux";
+
+// components
+import Content from "./layout/Content";
 
 const MainStream = ({ createPost }) => {
    const [postContent, setPostContent] = useState("");
@@ -46,22 +48,7 @@ const MainStream = ({ createPost }) => {
             </form>
          </div>
          <div className="post-stream">
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
-            <PostCard />
+           <Content />
          </div>
       </div>
    );
