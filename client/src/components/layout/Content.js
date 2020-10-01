@@ -10,11 +10,27 @@ const Content = ({ getFollowingPosts, followingPosts }) => {
       getFollowingPosts();
    }, [getFollowingPosts]);
 
-   return <div className="content">
-       {
-           followingPosts && followingPosts.length < 1 ? <p>nothing</p> : <PostCard />
-       }
-    </div>;
+   return (
+      <div className="content">
+         {followingPosts && followingPosts.length < 1 ? (
+            <div className="lets-go">
+               <h2>Welcome to Coolr</h2>
+               <p>
+                  It looks like you're not following anyone yet. Click here to
+                  find some people you might want to hear from!
+               </p>
+            </div>
+         ) : (
+            <>
+               {
+                  followingPosts && followingPosts.map(post => (
+                     <PostCard post={post} />
+                  ))   
+               }
+            </>
+         )}
+      </div>
+   );
 };
 
 const mapStateToProps = (state) => ({
