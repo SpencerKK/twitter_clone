@@ -3,9 +3,10 @@ import { createPost } from "../actions/post";
 import { connect } from "react-redux";
 
 // components
-import Content from "./layout/Content";
+import Content from "./subcomponents/Content";
+import Connect from "./subcomponents/Connect";
 
-const MainStream = ({ createPost }) => {
+const MainStream = ({ createPost, connectSub }) => {
    const [postContent, setPostContent] = useState("");
    const textAreaRef = useRef(null);
    let heightLimit = 500;
@@ -48,10 +49,16 @@ const MainStream = ({ createPost }) => {
             </form>
          </div>
          <div className="post-stream">
-           <Content />
+           {
+               connectSub ? <Connect /> : <Content />  
+            }
          </div>
       </div>
    );
 };
 
-export default connect(null, { createPost })(MainStream);
+const mapStateToProps = state => ({
+   connectSub: state.homeSubs.connect
+})
+
+export default connect(mapStateToProps, { createPost })(MainStream);
