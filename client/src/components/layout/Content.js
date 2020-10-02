@@ -19,6 +19,7 @@ const Content = ({ getFollowingPosts, followingPosts }) => {
                   It looks like you're not following anyone yet. Click here to
                   find some people you might want to hear from!
                </p>
+               <button>Get Started</button>
             </div>
          ) : (
             <>

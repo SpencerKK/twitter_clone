@@ -1,7 +1,7 @@
 .content {
     .lets-go {
         text-align: center;
-        margin: 0 3em;
+        margin: 3em 3em 0 3em;
         h2 {
             margin: 0.5em;
         }
@@ -9,6 +9,22 @@
             margin: 0;
             font-size: 0.9em;
             color: #7b7b7b
+        }
+
+        button {
+            background-color: $main-blue;
+            color: #fff;
+            border-radius: 20px;
+            border: none;
+            margin-top: 2em;
+            font-size: 0.9em;
+            font-weight: 550;
+            padding: 0.7em 1em;
+
+            &:hover {
+                cursor: pointer;
+                background-color: #1b90c7;
+            }
         }
     }
 }
