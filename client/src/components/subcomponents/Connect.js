@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { renderActiveUsers } from "../../actions/Needs2Follow/homeSubs";
 
-const Connect = () => {
-    return (
-        <div className="connect">
-            <h1>Connect Component</h1>
-        </div>
-    )
-}
+const Connect = ({ renderActiveUsers, activeUsers }) => {
 
-export default Connect;
+    useEffect(() => {
+        renderActiveUsers();
+    }, []);
+
+   return (
+      <div className="connect">
+          {
+              activeUsers && activeUsers.users.map(user => (
+              <div className="connect-user-card">
+                  <i className="fas fa-user"></i>
+                  <div className="connect-user-info">
+                  <p>{user.screenName}</p>
+                  <p>Proident occaecat ex cillum aute sunt excepteur aute dolor ad est consequat magna.</p>
+                  </div>
+              </div>
+              ))
+          }
+      </div>
+   );
+};
+
+const mapStateToProps = state => ({
+    activeUsers: state.activeUsers.activeUsers
+})
+
+export default connect(mapStateToProps, { renderActiveUsers })(Connect);

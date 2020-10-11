@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 // actions
 import { getFollowingPosts } from "../../actions/followingPosts";
-import { renderConnectSubs } from "../../actions/homeSubs";
+import { renderConnectSubs } from "../../actions/Needs2Follow/homeSubs";
 
 // components
 import PostCard from "./PostCard";

@@ -1,0 +1,15 @@
+.connect {
+    .connect-user-card {
+        display: flex;
+        justify-content: center;
+
+        .fa-user {
+            font-size: 1.5em;
+            background: $border-color;
+            padding: 0.5em;
+            color: #70747c;
+            border-radius: 50%;
+            margin-left: 0.5em;
+        }
+    }
+}

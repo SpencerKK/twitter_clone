@@ -1,7 +1,7 @@
 import {
     RENDER_CONNECT,
     LOGOUT
-} from "../actions/types";
+} from "../../actions/types";
 
 const initialState = {
     connect: false
