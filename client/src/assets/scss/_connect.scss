@@ -1,15 +1,56 @@
 .connect {
-    .connect-user-card {
-        display: flex;
-        justify-content: center;
+   .connect-user-card {
+      display: flex;
+    //   flex-direction: column;
+      justify-content: center;
+      border-bottom: 1px solid $border-color;
 
-        .fa-user {
+         .fa-user {
             font-size: 1.5em;
             background: $border-color;
             padding: 0.5em;
             color: #70747c;
             border-radius: 50%;
-            margin-left: 0.5em;
+            margin: 0 0.5em;
+            align-self: center;
+         }
+
+      .connect-user-info {
+
+        .connect-head {
+            display: flex;
+            justify-content: space-between;
+
+            #screenName {
+                font-weight: 700;
+                margin-bottom: 0;
+                transform: translateY(0.1em);
+             }
+
+            button {
+                background: #fff;
+                border: 1px solid $main-blue;
+                color: $main-blue;
+                margin: 1em 2.7em 0 0;
+                height: 2.4em;
+                width: 5.3em;
+                border-radius: 20px;
+
+                &:hover {
+                    background-color: #24aff02e;
+                    cursor: pointer;
+                    outline: none;
+                }
+
+                &:active, &:focus {
+                    outline: none;
+                }
+            }
         }
-    }
+      }
+
+      #detail {
+        margin-top: 1em;
+      }
+   }
 }
