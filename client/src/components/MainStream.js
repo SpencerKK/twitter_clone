@@ -50,7 +50,7 @@ const MainStream = ({ createPost, connectSub }) => {
          </div>
          <div className="post-stream">
            {
-               connectSub ? <Connect /> : <Content />  
+               connectSub === true ? <Connect /> : <Content />  
             }
          </div>
       </div>

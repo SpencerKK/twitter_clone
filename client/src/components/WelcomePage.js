@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 
 // components
-import LoginForm from "./layout/LoginForm";
+import LoginForm from "./subcomponents/LoginForm";
 
 // redux
 import { connect } from "react-redux";

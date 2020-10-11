@@ -1,7 +1,5 @@
-import {
-    RENDER_CONNECT
-} from "./types";
+import { RENDER_CONNECT } from "./types";
 
-export const renderConnectSubs = () => dispatch => {
-    dispatch({ type: RENDER_CONNECT });
-  };
+export const renderConnectSubs = () => (dispatch) => {
+   dispatch({ type: RENDER_CONNECT });
+};

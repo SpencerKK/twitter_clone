@@ -8,7 +8,7 @@ import { renderConnectSubs } from "../../actions/homeSubs";
 // components
 import PostCard from "./PostCard";
 
-const Content = ({ getFollowingPosts, followingPosts, renderConnectSubs }) => {
+const Content = ({ getFollowingPosts, followingPosts, renderConnectSubs, unrenderConnectSubs }) => {
    useEffect(() => {
       getFollowingPosts();
    }, [getFollowingPosts]);
