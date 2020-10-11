@@ -7,6 +7,7 @@ import {
    LOGIN_FAIL,
    LOGOUT
 } from "./types";
+
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -104,6 +105,8 @@ export const login = ({ email, password }) => async (dispatch) => {
    }
 };
 
+
+// logout user
 export const logout = () => dispatch => {
    dispatch({ type: LOGOUT });
  };
