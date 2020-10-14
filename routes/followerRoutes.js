@@ -47,8 +47,6 @@ router.get("/getActiveUsersList", authMid, async (req, res) => {
       })
 
       res.json({ users });
-
-      // res.json({ users });
    } catch (err) {
       res.status(500).json({ msg: err.message });
    }

@@ -15,3 +15,5 @@ export const GET_FOLLOWING_POSTS_FAIL = "GET_FOLLOWING_POSTS_FAIL";
 // for new users needing a list of active users to follow
 export const RENDER_CONNECT = "RENDER_CONNECT";
 export const RENDER_ACTIVE_USERS = "RENDER_ACTIVE_USERS";
+
+export const NEW_USER_FOLLOWS = "NEW_USER_FOLLOWS";
