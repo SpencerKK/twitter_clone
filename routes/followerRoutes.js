@@ -28,25 +28,48 @@ router.post("/follow/:id", authMid, async (req, res) => {
 // private
 router.get("/getActiveUsersList", authMid, async (req, res) => {
    try {
+      let myUserId = req.user.id;
 
+      // Find the userId and total posts of users who have posted
       let usersWhoHavePosted = await Post.findAll({
-         attributes: ["screenName", [sequelize.fn("COUNT", sequelize.col("screenName")), "total"]],
-         group: ["screenName"]
+         attributes: ["userId", [sequelize.fn("COUNT", sequelize.col("userId")), "total"]],
+         group: ["userId"]
       })
 
-      let myArray = await usersWhoHavePosted.map(theArray => {
-         return theArray.screenName
+      // just returns the ids
+      let theirIds = usersWhoHavePosted.map(user => {
+         return user.userId
       })
 
-      let users = await User.findAll({
+      // Instances where logged in user is the follower
+      let alreadyFollowing = await Followers.findAll({
          where: {
-            screenName: {
-               [Op.in]: myArray
+            follower_id: myUserId,
+            followed_id: {
+               [Op.in]: theirIds
+            }
+         }
+      });
+
+      // returns ids of those people user is following
+      let alreadyFollowedIds = alreadyFollowing.map(user => {
+         return user.followed_id
+      })
+
+      // those users who have made posts and who is not being followed by the logged in user
+      let potentialFollowIds = theirIds.filter(n => !alreadyFollowedIds.includes(n));
+
+      // profiles of those potential follows
+      let potentialFollowUsers = await User.findAll({
+         where: {
+            id: {
+               [Op.in]: potentialFollowIds
             }
          }
       })
 
-      res.json({ users });
+      res.json({ potentialFollowUsers });
+
    } catch (err) {
       res.status(500).json({ msg: err.message });
    }

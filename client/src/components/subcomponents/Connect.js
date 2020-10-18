@@ -9,7 +9,7 @@ const Connect = ({ renderActiveUsers, activeUsers, followUser }) => {
 
    useEffect((activeUsers) => {
       renderActiveUsers();
-   }, []);
+   }, [renderActiveUsers]);
 
    const onFollow = (e, followed_id) => {
       e.preventDefault();
@@ -19,7 +19,7 @@ const Connect = ({ renderActiveUsers, activeUsers, followUser }) => {
    return (
       <div className="connect">
          {activeUsers &&
-            activeUsers.users.map((user) => (
+            activeUsers.potentialFollowUsers.map((user) => (
                <div className="connect-user-card">
                   <i className="fas fa-user"></i>
                   <div className="connect-user-info">
@@ -39,7 +39,7 @@ const Connect = ({ renderActiveUsers, activeUsers, followUser }) => {
 };
 
 const mapStateToProps = (state) => ({
-   activeUsers: state.activeUsers.activeUsers,
+   activeUsers: state.activeUsers.activeUsers
 });
 
 export default connect(mapStateToProps, { renderActiveUsers, followUser })(Connect);
