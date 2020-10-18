@@ -1,9 +1,13 @@
-import { RENDER_CONNECT, RENDER_ACTIVE_USERS } from "../types";
+import { RENDER_CONNECT, RENDER_ACTIVE_USERS, UNRENDER_CONNECT } from "../types";
 import axios from "axios";
 
 export const renderConnectSubs = () => (dispatch) => {
    dispatch({ type: RENDER_CONNECT });
 };
+
+export const unrenderConnectSubs = () => (dispatch) => {
+   dispatch({ type: UNRENDER_CONNECT })
+}
 
 export const renderActiveUsers = () => async (dispatch) => {
    try {

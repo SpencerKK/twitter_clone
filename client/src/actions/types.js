@@ -15,6 +15,7 @@ export const GET_MY_RECENT_POSTS = "GET_MY_RECENT_POSTS";
 
 // for new users needing a list of active users to follow
 export const RENDER_CONNECT = "RENDER_CONNECT";
+export const UNRENDER_CONNECT = "UNRENDER_CONNECT";
 export const RENDER_ACTIVE_USERS = "RENDER_ACTIVE_USERS";
 
 export const NEW_USER_FOLLOWS = "NEW_USER_FOLLOWS";

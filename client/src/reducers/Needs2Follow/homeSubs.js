@@ -1,6 +1,7 @@
 import {
     RENDER_CONNECT,
-    LOGOUT
+    LOGOUT,
+    UNRENDER_CONNECT
 } from "../../actions/types";
 
 const initialState = {
@@ -15,6 +16,7 @@ export default (state = initialState, action) => {
                 connect: true
             }
         case LOGOUT:
+        case UNRENDER_CONNECT:
             return {
                 ...state,
                 connect: false

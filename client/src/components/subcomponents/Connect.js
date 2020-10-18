@@ -4,16 +4,20 @@ import { connect } from "react-redux";
 // actions
 import { renderActiveUsers } from "../../actions/Needs2Follow/homeSubs";
 import { followUser } from "../../actions/follow";
+import { getFollowingPosts } from "../../actions/followingPosts";
+import { unrenderConnectSubs } from "../../actions/Needs2Follow/homeSubs";
 
-const Connect = ({ renderActiveUsers, activeUsers, followUser }) => {
+const Connect = ({ renderActiveUsers, activeUsers, followUser, unrenderConnectSubs, getFollowingPosts }) => {
 
-   useEffect((activeUsers) => {
+   useEffect(() => {
       renderActiveUsers();
    }, [renderActiveUsers]);
 
    const onFollow = (e, followed_id) => {
       e.preventDefault();
-      followUser(followed_id)
+      followUser(followed_id);
+      unrenderConnectSubs();
+      getFollowingPosts();
    }
 
    return (
@@ -42,4 +46,4 @@ const mapStateToProps = (state) => ({
    activeUsers: state.activeUsers.activeUsers
 });
 
-export default connect(mapStateToProps, { renderActiveUsers, followUser })(Connect);
+export default connect(mapStateToProps, { renderActiveUsers, followUser, getFollowingPosts, unrenderConnectSubs })(Connect);
