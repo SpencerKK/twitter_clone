@@ -21,9 +21,13 @@ const MainStream = ({ createPost, connectSub }) => {
 
    const onPostSubmit = (e, postContent) => {
       e.preventDefault();
-      createPost({ content: postContent });
-      setPostContent("");
-      alert("Post Made!")
+      if (postContent === "") {
+         alert("Cannot create an empty post!")
+      } else {
+         createPost({ content: postContent });
+         setPostContent("");
+         alert("Post Made!")
+      }
    };
 
    return (
