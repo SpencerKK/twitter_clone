@@ -67,6 +67,10 @@
               background-color: #24aff0a8;
               cursor: pointer;
             }
+
+            &:active, &:focus {
+              outline: none;
+            }
           }
         }
       }
