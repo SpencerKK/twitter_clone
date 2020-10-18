@@ -62,6 +62,11 @@
             font-size: 0.9em;
             font-weight: 550;
             padding: 0.5em 1.3em;
+
+            &:hover {
+              background-color: #24aff0a8;
+              cursor: pointer;
+            }
           }
         }
       }

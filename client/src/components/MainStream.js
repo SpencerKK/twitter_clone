@@ -21,7 +21,9 @@ const MainStream = ({ createPost, connectSub }) => {
 
    const onPostSubmit = (e, postContent) => {
       e.preventDefault();
-      createPost({ content: postContent })
+      createPost({ content: postContent });
+      setPostContent("");
+      alert("Post Made!")
    };
 
    return (
@@ -37,6 +39,7 @@ const MainStream = ({ createPost, connectSub }) => {
                      ref={textAreaRef}
                      onChange={(e) => onAreaType(e)}
                      placeholder="What's Happening..."
+                     value={postContent}
                   ></textarea>
                </div>
                <div className="post-addl-wrapper">
