@@ -63,4 +63,29 @@ router.get("/getFollowingPosts", authMid, async (req, res) => {
    }
 });
 
+// get
+// api/posts/getMyRecentPosts
+// gets the post that you have recently made
+// private
+router.get("/getMyRecentPosts", authMid, async (req, res) => {
+   try {
+      let userId = req.user.id;
+
+      let myRecentPosts = await Post.findAll({
+         where: {
+            userId
+         },
+         order: [
+            ["id", "DESC"],
+         ],
+         limit: 2
+      });
+
+      res.json({ myRecentPosts });
+
+   } catch (err) {
+      res.status(500).json({ msg: err.message });
+   }
+})
+
 module.exports = router;

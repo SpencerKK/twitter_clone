@@ -11,6 +11,7 @@ export const CREATE_POST_FAIL = "CREATE_POST_FAIL";
 
 export const GET_FOLLOWING_POSTS = "GET_FOLLOWING_POSTS";
 export const GET_FOLLOWING_POSTS_FAIL = "GET_FOLLOWING_POSTS_FAIL";
+export const GET_MY_RECENT_POSTS = "GET_MY_RECENT_POSTS";
 
 // for new users needing a list of active users to follow
 export const RENDER_CONNECT = "RENDER_CONNECT";

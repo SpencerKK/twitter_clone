@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import auth from "./auth";
 import post from "./post";
 import followingPosts from "./followingPosts";
+import myRecentPosts from "./myRecentPosts";
 
 // only for new users
 import homeSubs from "./Needs2Follow/homeSubs";
@@ -13,5 +14,6 @@ export default combineReducers({
     post,
     homeSubs,
     activeUsers,
-    followingPosts
+    followingPosts,
+    myRecentPosts
 })

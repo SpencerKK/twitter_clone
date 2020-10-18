@@ -4,14 +4,24 @@ import { connect } from "react-redux";
 // actions
 import { getFollowingPosts } from "../../actions/followingPosts";
 import { renderConnectSubs } from "../../actions/Needs2Follow/homeSubs";
+import { getMyRecentPosts } from "../../actions/myRecentPosts";
 
 // components
 import PostCard from "./PostCard";
+import RecentPostBlock from "./RecentPostBlock";
 
-const Content = ({ getFollowingPosts, followingPosts, renderConnectSubs, unrenderConnectSubs }) => {
+const Content = ({
+   getFollowingPosts,
+   getMyRecentPosts,
+   myRecentPosts,
+   followingPosts,
+   renderConnectSubs,
+   unrenderConnectSubs,
+}) => {
    useEffect(() => {
       getFollowingPosts();
-   }, [getFollowingPosts]);
+      getMyRecentPosts();
+   }, [getFollowingPosts, getMyRecentPosts]);
 
    return (
       <div className="content">
@@ -26,11 +36,22 @@ const Content = ({ getFollowingPosts, followingPosts, renderConnectSubs, unrende
             </div>
          ) : (
             <>
-               {
-                  followingPosts && followingPosts.map(post => (
-                     <PostCard postContent={post.content} screenName={post.screenName} />
-                  ))   
-               }
+               <RecentPostBlock>
+               {myRecentPosts &&
+                  myRecentPosts.map((post) => (
+                     <PostCard
+                        postContent={post.content}
+                        screenName={post.screenName}
+                     />
+                  ))}
+               </RecentPostBlock>
+               {followingPosts &&
+                  followingPosts.map((post) => (
+                     <PostCard
+                        postContent={post.content}
+                        screenName={post.screenName}
+                     />
+                  ))}
             </>
          )}
       </div>
@@ -39,6 +60,11 @@ const Content = ({ getFollowingPosts, followingPosts, renderConnectSubs, unrende
 
 const mapStateToProps = (state) => ({
    followingPosts: state.followingPosts.isFollowingPosts,
+   myRecentPosts: state.myRecentPosts.myRecentPosts,
 });
 
-export default connect(mapStateToProps, { getFollowingPosts, renderConnectSubs })(Content);
+export default connect(mapStateToProps, {
+   getFollowingPosts,
+   getMyRecentPosts,
+   renderConnectSubs,
+})(Content);
