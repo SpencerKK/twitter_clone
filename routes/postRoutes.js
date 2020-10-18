@@ -54,6 +54,9 @@ router.get("/getFollowingPosts", authMid, async (req, res) => {
          where: {
             userId: followedUserIds,
          },
+         order: [
+            ["id", "DESC"]
+         ]
       });
 
       res.json({ isFollowingPosts });

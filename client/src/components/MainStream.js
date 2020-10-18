@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
-import { createPost } from "../actions/post";
 import { connect } from "react-redux";
+
+// actions
+import { createPost } from "../actions/post";
 
 // components
 import Content from "./subcomponents/Content";
@@ -20,13 +22,11 @@ const MainStream = ({ createPost, connectSub }) => {
    };
 
    const onPostSubmit = (e, postContent) => {
-      e.preventDefault();
       if (postContent === "") {
          alert("Cannot create an empty post!")
       } else {
          createPost({ content: postContent });
          setPostContent("");
-         alert("Post Made!")
       }
    };
 

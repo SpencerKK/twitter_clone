@@ -18,6 +18,7 @@ const Content = ({
    renderConnectSubs,
    unrenderConnectSubs,
 }) => {
+
    useEffect(() => {
       getFollowingPosts();
       getMyRecentPosts();
