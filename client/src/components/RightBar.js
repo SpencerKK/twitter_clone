@@ -5,8 +5,9 @@ import { connect } from "react-redux";
 import { renderActiveUsers } from "../actions/Needs2Follow/homeSubs";
 import { followUser } from "../actions/follow";
 import { getFollowingPosts } from "../actions/followingPosts";
+import { unrenderConnectSubs } from "../actions/Needs2Follow/homeSubs";
 
-const RightBar = ({ activeUsers, renderActiveUsers, getFollowingPosts, followUser }) => {
+const RightBar = ({ activeUsers, renderActiveUsers, getFollowingPosts, unrenderConnectSubs, followUser }) => {
     let [loading, setLoading] = useState(true);
 
    useEffect(() => {
@@ -20,6 +21,7 @@ const RightBar = ({ activeUsers, renderActiveUsers, getFollowingPosts, followUse
        setLoading(!loading);
        getFollowingPosts();
        renderActiveUsers();
+       unrenderConnectSubs();
    }
 
    console.log(loading);
@@ -47,4 +49,4 @@ const mapStateToProps = (state) => ({
    activeUsers: state.activeUsers.activeUsers,
 });
 
-export default connect(mapStateToProps, { renderActiveUsers, followUser, getFollowingPosts })(RightBar);
+export default connect(mapStateToProps, { renderActiveUsers, followUser, unrenderConnectSubs, getFollowingPosts })(RightBar);
