@@ -3,10 +3,69 @@
     border-left: 1px solid $border-color;
     position: sticky;
     top: 0;
+    padding-left: 3em;
   
-    p {
-      font-size: 1.1em;
-      font-weight: 700;
+    .user-list {
+      background: #F5F8FA;
+      width: 20em;
+      padding: 0 0.5em 0 0.5em;
+      margin-top: 3em;
+      border-radius: 7px;
+
+      #who-to-follow {
+        padding: 0.5em 0 0.5em 0.5em;
+        font-size: 1.2em;
+        font-weight: 800;
+        margin: 0;
+      }
+
+
+      .user-card {
+        display: flex;
+        justify-content: space-between;
+        height: 4em;
+        border-top: 1px solid $border-color;
+
+        .user-card-text {
+          display: flex;
+          align-items: center;
+
+          i {
+            font-size: 1.3em;
+            background: $border-color;
+            padding: 0.5em;
+            color: #70747c;
+            border-radius: 50%;
+            margin: 0 0.5em;
+          }
+
+          p {
+            font-size: 0.9em;
+            font-weight: 700;
+          }
+        }
+
+        button {
+          background: #fff;
+          border: 1px solid $main-blue;
+          color: $main-blue;
+          margin: 1em 2.7em 0 0;
+          height: 2.4em;
+          width: 5.3em;
+          border-radius: 20px;
+          font-weight: 900;
+
+          &:hover {
+            background-color: #24aff02e;
+            cursor: pointer;
+            outline: none;
+        }
+
+        &:active, &:focus {
+            outline: none;
+        }
+        }
+      }
     }
   }
 
