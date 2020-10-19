@@ -15,6 +15,7 @@ dotenv.config({ path: "./.env" });
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/posts", require("./routes/postRoutes"));
 app.use("/api/follows", require("./routes/followerRoutes"));
+app.use("/api/likes", require("./routes/likeRoutes"));
 
 // database
 db.sync({

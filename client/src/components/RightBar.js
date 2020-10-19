@@ -24,8 +24,6 @@ const RightBar = ({ activeUsers, renderActiveUsers, getFollowingPosts, unrenderC
        unrenderConnectSubs();
    }
 
-   console.log(loading);
-
    return (
       <div className="right-bar">
          <div className="user-list">
