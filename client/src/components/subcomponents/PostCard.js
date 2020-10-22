@@ -1,6 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const PostCard = ({ screenName, postContent }) => {
+// action
+import { likePost } from "../../actions/likes";
+
+const PostCard = ({ screenName, postContent, postId, likePost }) => {
+
+   const onLikePost = (postId) => {
+      likePost(postId);
+      alert("You liked a post");
+   }
+   
    return (
       <div className="post-card">
          <div className="post-body">
@@ -22,7 +32,7 @@ const PostCard = ({ screenName, postContent }) => {
                <p>450</p>
             </div>
             <div className="post-option-wrapper">
-               <i className="far fa-heart"></i>
+               <i className="far fa-heart" onClick={() => onLikePost(postId)}></i>
                <p>9</p>
             </div>
          </div>
@@ -30,4 +40,4 @@ const PostCard = ({ screenName, postContent }) => {
    );
 };
 
-export default PostCard;
+export default connect(null, { likePost })(PostCard);

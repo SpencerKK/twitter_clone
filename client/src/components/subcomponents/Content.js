@@ -18,7 +18,6 @@ const Content = ({
    renderConnectSubs,
    unrenderConnectSubs,
 }) => {
-
    useEffect(() => {
       getFollowingPosts();
       getMyRecentPosts();
@@ -38,17 +37,19 @@ const Content = ({
          ) : (
             <>
                <RecentPostBlock>
-               {myRecentPosts &&
-                  myRecentPosts.map((post) => (
-                     <PostCard
-                        postContent={post.content}
-                        screenName={post.screenName}
-                     />
-                  ))}
+                  {myRecentPosts &&
+                     myRecentPosts.map((post) => (
+                        <PostCard
+                           postId={post.id}
+                           postContent={post.content}
+                           screenName={post.screenName}
+                        />
+                     ))}
                </RecentPostBlock>
                {followingPosts &&
                   followingPosts.map((post) => (
                      <PostCard
+                        postId={post.id}
                         postContent={post.content}
                         screenName={post.screenName}
                      />
