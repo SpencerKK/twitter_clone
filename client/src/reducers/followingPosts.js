@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
         case GET_FOLLOWING_POSTS:
             return {
                 ...state,
-                isFollowingPosts: action.payload.isFollowingPosts
+                isFollowingPosts: action.payload.combinedPosts
             }
         case GET_FOLLOWING_POSTS_FAIL:
         case LOGOUT:

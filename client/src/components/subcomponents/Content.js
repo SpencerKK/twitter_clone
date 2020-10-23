@@ -52,6 +52,7 @@ const Content = ({
                         postId={post.id}
                         postContent={post.content}
                         screenName={post.screenName}
+                        isLiked={post.isLiked}
                      />
                   ))}
             </>
