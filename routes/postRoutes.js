@@ -5,6 +5,7 @@ const authMid = require("../middleware/authMid");
 const { User } = require("../models");
 const { Post } = require("../models");
 const { Followers } = require("../models");
+const { Likes } = require("../models");
 
 // post
 // api/posts/post
@@ -23,7 +24,7 @@ router.post(
          let post = await Post.create({
             content: req.body.content,
             userId: req.user.id,
-            screenName: req.user.screenName
+            screenName: req.user.screenName,
          });
 
          res.json({ post });
@@ -39,7 +40,6 @@ router.post(
 // private
 router.get("/getFollowingPosts", authMid, async (req, res) => {
    try {
-      // let user = await User.findOne({ where: { email } });
       let userId = req.user.id;
 
       let isFollowing = await Followers.findAll({
@@ -48,19 +48,44 @@ router.get("/getFollowingPosts", authMid, async (req, res) => {
          },
       });
 
-      let followedUserIds = isFollowing.map(n => n.followed_id);
+      let followedUserIds = isFollowing.map((n) => n.followed_id);
 
       let isFollowingPosts = await Post.findAll({
          where: {
             userId: followedUserIds,
          },
-         order: [
-            ["id", "DESC"]
-         ]
+         order: [["id", "DESC"]],
       });
 
-      res.json({ isFollowingPosts });
+      // liked posts come into play here
+      let allLikes = await Likes.findAll({
+         where: {
+            userId: req.user.id,
+         },
+      });
 
+      let likedPostIds = allLikes.map((n) => n.postId);
+
+      let likedPosts = await Post.findAll({
+         raw: true,
+         where: {
+            id: likedPostIds,
+         },
+      });
+
+      // Adding new liked status to all of the likedPosts
+      for (var i = 0; i < likedPosts.length; i++) {
+         likedPosts[i] = Object.assign({ isLiked: true }, likedPosts[i]);
+      }
+
+      // combining likedPosts & isFollowingPosts
+
+      let combinedPosts = isFollowingPosts.map((n) => {
+         let post = likedPosts.find(({ id }) => id === n.id);
+         return post ? post : n;
+      });
+
+      res.json({ combinedPosts });
    } catch (err) {
       res.status(500).json({ msg: err.message });
    }
@@ -76,19 +101,16 @@ router.get("/getMyRecentPosts", authMid, async (req, res) => {
 
       let myRecentPosts = await Post.findAll({
          where: {
-            userId
+            userId,
          },
-         order: [
-            ["id", "DESC"],
-         ],
-         limit: 2
+         order: [["id", "DESC"]],
+         limit: 2,
       });
 
       res.json({ myRecentPosts });
-
    } catch (err) {
       res.status(500).json({ msg: err.message });
    }
-})
+});
 
 module.exports = router;
