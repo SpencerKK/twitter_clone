@@ -11,9 +11,6 @@ router.post("/like/:id", authMid, async (req, res) => {
       let userId = req.user.id;
       let postId = req.params.id;
 
-    //   let likeInstance = await Likes.create({ userId, postId });
-    //   res.json({ likeInstance });
-
     let existingLike = await Likes.findOne({
         where: {
             userId, postId
@@ -21,7 +18,11 @@ router.post("/like/:id", authMid, async (req, res) => {
     })
 
     if (existingLike) {
-        await existingLike.destroy();
+        await Likes.destroy({
+            where: {
+                userId, postId
+            }
+        })
     } else {
         await Likes.create({userId, postId})
     }
