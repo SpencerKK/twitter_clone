@@ -5,11 +5,12 @@ import { connect } from "react-redux";
 import { likePost } from "../../actions/likes";
 import { getFollowingPosts } from "../../actions/followingPosts";
 
-const PostCard = ({ screenName, postContent, postId, isLiked, getFollowingPosts, likePost }) => {
+const PostCard = ({ screenName, postContent, postId, isLiked, getFollowingPosts, followingPosts, likePost }) => {
 
    const onLikePost = (postId) => {
       likePost(postId);
       getFollowingPosts();
+      console.log(followingPosts);
    };
 
    return (
@@ -45,4 +46,8 @@ const PostCard = ({ screenName, postContent, postId, isLiked, getFollowingPosts,
    );
 };
 
-export default connect(null, { likePost, getFollowingPosts })(PostCard);
+const mapStateToProps = state => ({
+    followingPosts: state.followingPosts.isFollowingPosts,
+})
+
+export default connect(mapStateToProps, { likePost, getFollowingPosts })(PostCard);

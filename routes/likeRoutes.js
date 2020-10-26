@@ -11,9 +11,22 @@ router.post("/like/:id", authMid, async (req, res) => {
       let userId = req.user.id;
       let postId = req.params.id;
 
-      let likeInstance = await Likes.create({ userId, postId });
+    //   let likeInstance = await Likes.create({ userId, postId });
+    //   res.json({ likeInstance });
 
-      res.json({ likeInstance });
+    let existingLike = await Likes.findOne({
+        where: {
+            userId, postId
+        }
+    })
+
+    if (existingLike) {
+        await existingLike.destroy();
+    } else {
+        await Likes.create({userId, postId})
+    }
+
+    res.json({ msg: "Success" })
    } catch (err) {
       res.status(500).json({ msg: err.message });
    }
