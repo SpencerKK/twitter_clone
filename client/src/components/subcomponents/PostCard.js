@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 // action
 import { likePost } from "../../actions/likes";
+import { getFollowingPosts } from "../../actions/followingPosts";
 
-const PostCard = ({ screenName, postContent, postId, isLiked, likePost }) => {
+const PostCard = ({ screenName, postContent, postId, isLiked, getFollowingPosts, likePost }) => {
+
    const onLikePost = (postId) => {
       likePost(postId);
-      alert("You liked a post");
+      getFollowingPosts();
    };
 
    return (
@@ -43,4 +45,4 @@ const PostCard = ({ screenName, postContent, postId, isLiked, likePost }) => {
    );
 };
 
-export default connect(null, { likePost })(PostCard);
+export default connect(null, { likePost, getFollowingPosts })(PostCard);

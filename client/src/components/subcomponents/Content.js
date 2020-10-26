@@ -40,6 +40,7 @@ const Content = ({
                   {myRecentPosts &&
                      myRecentPosts.map((post) => (
                         <PostCard
+                           key={post.id}
                            postId={post.id}
                            postContent={post.content}
                            screenName={post.screenName}
@@ -49,6 +50,7 @@ const Content = ({
                {followingPosts &&
                   followingPosts.map((post) => (
                      <PostCard
+                        key={post.id}
                         postId={post.id}
                         postContent={post.content}
                         screenName={post.screenName}
