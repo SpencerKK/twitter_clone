@@ -1,11 +1,14 @@
 const router = require("express").Router();
 const { check, validationResult } = require("express-validator");
 const authMid = require("../middleware/authMid");
+const { Op } = require("sequelize");
+
 
 const { User } = require("../models");
 const { Post } = require("../models");
 const { Followers } = require("../models");
 const { Likes } = require("../models");
+const { findAndCountAll, sequelize } = require("../models/User");
 
 // post
 // api/posts/post
@@ -79,13 +82,23 @@ router.get("/getFollowingPosts", authMid, async (req, res) => {
       }
 
       // combining likedPosts & isFollowingPosts
-
       let combinedPosts = isFollowingPosts.map((n) => {
          let post = likedPosts.find(({ id }) => id === n.id);
          return post ? post : n;
       });
 
-      res.json({ combinedPosts });
+      // add total like count to each post
+      let likeGroups = await Likes.findAll({
+         group: ["postId"],
+         attributes: {
+            include: [
+               [sequelize.fn("COUNT", sequelize.col("postId")), "likeCount"]
+            ]
+         }
+      })
+
+
+      res.json({ combinedPosts, likeGroups });
    } catch (err) {
       res.status(500).json({ msg: err.message });
    }
