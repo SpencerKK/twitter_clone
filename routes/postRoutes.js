@@ -89,6 +89,7 @@ router.get("/getFollowingPosts", authMid, async (req, res) => {
 
       // add total like count to each post
       let likeGroups = await Likes.findAll({
+         raw: true,
          group: ["postId"],
          attributes: {
             include: [
@@ -97,8 +98,14 @@ router.get("/getFollowingPosts", authMid, async (req, res) => {
          }
       })
 
+      let postArray = combinedPosts.map(post => {
+         let theLikes = likeGroups.find(({ postId }) => post.id === postId);
+         return { ...post, ...theLikes }
+      })
 
-      res.json({ combinedPosts, likeGroups });
+
+      // res.json({ combinedPosts, likeGroups });
+      res.json({ postArray })
    } catch (err) {
       res.status(500).json({ msg: err.message });
    }
