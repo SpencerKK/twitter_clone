@@ -17,6 +17,7 @@ const PostCard = ({
    followingPosts,
    likePost,
 }) => {
+
    const onLikePost = (postId) => {
       likePost(postId);
       getFollowingPosts();
@@ -24,7 +25,7 @@ const PostCard = ({
    };
 
    return (
-      <div className="post-card">
+      <div className="post-card" key={postId}>
          <div className="post-body">
             <div className="post-user-icon">
                <i className="fas fa-user"></i>
@@ -46,12 +47,12 @@ const PostCard = ({
             <div className="post-option-wrapper">
                <i
                   className={
-                     isLiked && isLiked === true
+                     isLiked === true
                         ? "fas fa-heart"
                         : "far fa-heart"
                   }
                   // className="far fa-heart"
-                  style={isLiked && isLiked === true ? { color: "red" } : null}
+                  style={{ color: isLiked && "red" }}
                   onClick={() => onLikePost(postId)}
                ></i>
                <p>{likeCount}</p>
