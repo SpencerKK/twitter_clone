@@ -21,7 +21,7 @@ const Content = ({
    useEffect(() => {
       getFollowingPosts();
       getMyRecentPosts();
-   }, [getFollowingPosts, getMyRecentPosts]);
+   }, []);
 
    return (
       <div className="content">
@@ -55,6 +55,7 @@ const Content = ({
                         postContent={post.content}
                         screenName={post.screenName}
                         isLiked={post.isLiked}
+                        likeCount={post.likeCount}
                      />
                   ))}
             </>

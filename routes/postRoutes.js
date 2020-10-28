@@ -93,8 +93,10 @@ router.get("/getFollowingPosts", authMid, async (req, res) => {
          group: ["postId"],
          attributes: {
             include: [
-               [sequelize.fn("COUNT", sequelize.col("postId")), "likeCount"]
-            ]
+               [sequelize.fn("COUNT", sequelize.col("postId")), "likeCount"],
+            ],
+            exclude: ["createdAt", "updatedAt", "userId"]
+            // above me, I exclude those values giving me the error for not being functionally dependent on columns in my GroupBy clause
          }
       })
 
