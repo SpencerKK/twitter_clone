@@ -129,7 +129,59 @@ router.get("/getMyRecentPosts", authMid, async (req, res) => {
          limit: 2,
       });
 
-      res.json({ myRecentPosts });
+      // likes come into play here
+      let recentPostIds = myRecentPosts.map(post => {
+         return post.id
+      })
+      
+      let mySelfLikes = await Likes.findAll({
+         where: {
+            userId: req.user.id,
+            postId: recentPostIds
+         }
+      })
+
+      let mySelfLikeIds = mySelfLikes.map(like => {
+         return like.postId
+      })
+
+      let mySelfLikedPosts = await Post.findAll({
+         raw: true,
+         where: {
+            id: mySelfLikeIds
+         }
+      })
+
+      // adding new liked status to all of the selfLikedPosts
+      for (var i = 0; i < mySelfLikedPosts.length; i++) {
+         mySelfLikedPosts[i] = Object.assign({ isLiked: true }, mySelfLikedPosts[i])
+      }
+
+      // combinging myRecentPosts and selfLikedPosts
+      let combinedPosts = myRecentPosts.map(n => {
+         let post = mySelfLikedPosts.find(({id}) => id === n.id);
+         return post ? post : n;
+      })
+
+      // add total like count to each post
+      let likeGroups = await Likes.findAll({
+         raw: true,
+         group: ["postId"],
+         attributes: {
+            include: [
+               [sequelize.fn("COUNT", sequelize.col("postId")), "likeCount"],
+            ],
+            exclude: ["createdAt", "updatedAt", "userId"]
+         }
+      })
+
+      let postArray = combinedPosts.map(post => {
+         let theLikes = likeGroups.find(({ postId }) => post.id === postId);
+         return { ...post, ...theLikes }
+      })
+
+
+      res.json({ postArray });
    } catch (err) {
       res.status(500).json({ msg: err.message });
    }

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 // action
 import { likePost } from "../../actions/likes";
 import { getFollowingPosts } from "../../actions/followingPosts";
+import { getMyRecentPosts } from "../../actions/myRecentPosts";
 
 const PostCard = ({
    screenName,
@@ -12,12 +13,14 @@ const PostCard = ({
    isLiked,
    likeCount,
    getFollowingPosts,
+   getMyRecentPosts,
    followingPosts,
    likePost,
 }) => {
    const onLikePost = (postId) => {
       likePost(postId);
       getFollowingPosts();
+      getMyRecentPosts();
    };
 
    return (
@@ -62,6 +65,6 @@ const mapStateToProps = (state) => ({
    followingPosts: state.followingPosts.isFollowingPosts,
 });
 
-export default connect(mapStateToProps, { likePost, getFollowingPosts })(
+export default connect(mapStateToProps, { likePost, getFollowingPosts, getMyRecentPosts })(
    PostCard
 );

@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
         case GET_MY_RECENT_POSTS:
             return {
                 ...state,
-                myRecentPosts: action.payload.myRecentPosts
+                myRecentPosts: action.payload.postArray
             }
         default:
             return state;

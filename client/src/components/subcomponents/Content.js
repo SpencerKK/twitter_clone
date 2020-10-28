@@ -8,7 +8,6 @@ import { getMyRecentPosts } from "../../actions/myRecentPosts";
 
 // components
 import PostCard from "./PostCard";
-import RecentPostBlock from "./RecentPostBlock";
 
 const Content = ({
    getFollowingPosts,
@@ -36,7 +35,7 @@ const Content = ({
             </div>
          ) : (
             <>
-               <RecentPostBlock>
+               <div className="recent-post-block">
                   {myRecentPosts &&
                      myRecentPosts.map((post) => (
                         <PostCard
@@ -44,9 +43,11 @@ const Content = ({
                            postId={post.id}
                            postContent={post.content}
                            screenName={post.screenName}
+                           isLiked={post.isLiked}
+                           likeCount={post.likeCount}
                         />
                      ))}
-               </RecentPostBlock>
+               </div>
                {followingPosts &&
                   followingPosts.map((post) => (
                      <PostCard
