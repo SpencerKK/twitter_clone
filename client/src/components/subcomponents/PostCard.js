@@ -40,8 +40,8 @@ const PostCard = ({ screenName, postContent, postId, isLiked, likeCount, getFoll
          </div>
          <div className="post-option-wrapper">
             <i
-               // className={isLiked ? "fas fa-heart" : "far fa-heart"}
-               className="fas fa-heart"
+               className={isLiked ? "fas fa-heart" : "far fa-heart"}
+               // className="far fa-heart"
                style={isLiked && isLiked === true ? { color: "red" } : null}
                onClick={() => onLikePost(postId)}
             ></i>
