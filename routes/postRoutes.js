@@ -187,4 +187,27 @@ router.get("/getMyRecentPosts", authMid, async (req, res) => {
    }
 });
 
+// get
+// api/posts/singlePost
+// pulls up a single post you click on
+// private
+
+router.get("/singlePost/:id", authMid, async (req, res) => {
+   try {
+
+      let postId = req.params.id;
+
+      let post = await Post.findOne({
+         where: {
+            id: postId
+         }
+      })
+
+      res.json({ post });
+      
+   } catch (err) {
+      res.status(500).json({ msg: err.message })
+   }
+})
+
 module.exports = router;
