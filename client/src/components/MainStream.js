@@ -41,10 +41,20 @@ const MainStream = ({ createPost, connectSub, singlePostSub }) => {
       }
    }
 
+   const renderTitleOptions = () => {
+      if (connectSub === true) {
+         return "Who To Follow"
+      } else if (singlePostSub === true) {
+         return "A Cool Post"
+      } else {
+         return "Home"
+      }
+   }
+
    return (
       <div className="main-stream-wrapper">
          <div className="main-stream-header">
-            <p>Home</p>
+            <p>{renderTitleOptions()}</p>
             <form onSubmit={(e) => onPostSubmit(e, postContent)}>
                <div className="home-textarea-wrapper">
                   <div className="icon-holder">
