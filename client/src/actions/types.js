@@ -9,6 +9,7 @@ export const LOGOUT = "LOGOUT";
 // post
 export const CREATE_POST_SUCCESS = "CREATE_POST_SUCCESS";
 export const CREATE_POST_FAIL = "CREATE_POST_FAIL";
+export const RENDER_SINGLE_POST = "RENDER_SINGLE_POST";
 
 // follow
 export const GET_FOLLOWING_POSTS = "GET_FOLLOWING_POSTS";

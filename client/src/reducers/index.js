@@ -9,9 +9,13 @@ import myRecentPosts from "./myRecentPosts";
 import homeSubs from "./Needs2Follow/homeSubs";
 import activeUsers from "./Needs2Follow/activeUsers";
 
+// for rendering single post
+import singlePostSubs from "./singlePostSubs";
+
 export default combineReducers({
     auth,
     post,
+    singlePostSubs,
     homeSubs,
     activeUsers,
     followingPosts,

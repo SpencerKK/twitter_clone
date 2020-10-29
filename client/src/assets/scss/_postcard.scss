@@ -2,6 +2,12 @@
    border-bottom: 1px solid $border-color;
    padding-top: 1em;
    font-size: 1em;
+   z-index: -5;
+
+   &:hover {
+      cursor: pointer;
+      background-color: #F7F7F7;
+   }
 
    .post-body {
       display: flex;
@@ -49,9 +55,12 @@
           i {
               padding-right: 0.5em;
               height: 0;
+              z-index: 100;
 
               &:hover {
                   cursor: pointer;
+                  color: red;
+                  background-color: red;
               }
           }
 

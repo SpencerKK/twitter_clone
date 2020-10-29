@@ -7,8 +7,9 @@ import { createPost } from "../actions/post";
 // components
 import Content from "./subcomponents/Content";
 import Connect from "./subcomponents/Connect";
+import SinglePost from "./subcomponents/SinglePost";
 
-const MainStream = ({ createPost, connectSub }) => {
+const MainStream = ({ createPost, connectSub, singlePostSub }) => {
    const [postContent, setPostContent] = useState("");
    const textAreaRef = useRef(null);
    let heightLimit = 500;
@@ -29,6 +30,16 @@ const MainStream = ({ createPost, connectSub }) => {
          setPostContent("");
       }
    };
+
+   const renderOptions = () => {
+      if (connectSub === true) {
+         return <Connect />
+      } else if (singlePostSub === true) {
+         return <SinglePost />
+      } else {
+         return <Content />
+      }
+   }
 
    return (
       <div className="main-stream-wrapper">
@@ -57,7 +68,7 @@ const MainStream = ({ createPost, connectSub }) => {
          </div>
          <div className="post-stream">
            {
-               connectSub === true ? <Connect /> : <Content />  
+               renderOptions()
             }
          </div>
       </div>
@@ -65,7 +76,8 @@ const MainStream = ({ createPost, connectSub }) => {
 };
 
 const mapStateToProps = state => ({
-   connectSub: state.homeSubs.connect
+   connectSub: state.homeSubs.connect,
+   singlePostSub: state.singlePostSubs.singlePost
 })
 
 export default connect(mapStateToProps, { createPost })(MainStream);

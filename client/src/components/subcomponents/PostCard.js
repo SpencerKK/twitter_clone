@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { likePost } from "../../actions/likes";
 import { getFollowingPosts } from "../../actions/followingPosts";
 import { getMyRecentPosts } from "../../actions/myRecentPosts";
+import { renderSinglePost } from "../../actions/singlePostSubs";
 
 const PostCard = ({
    screenName,
@@ -14,18 +15,23 @@ const PostCard = ({
    likeCount,
    getFollowingPosts,
    getMyRecentPosts,
+   renderSinglePost,
    followingPosts,
    likePost,
 }) => {
-
-   const onLikePost = (postId) => {
+   const onLikePost = (e, postId) => {
+      e.stopPropagation();
       likePost(postId);
       getFollowingPosts();
       getMyRecentPosts();
    };
 
+   const onRenderPost = () => {
+      renderSinglePost();
+   };
+
    return (
-      <div className="post-card" key={postId}>
+      <div className="post-card" key={postId} onClick={() => onRenderPost()}>
          <div className="post-body">
             <div className="post-user-icon">
                <i className="fas fa-user"></i>
@@ -46,14 +52,10 @@ const PostCard = ({
             </div>
             <div className="post-option-wrapper">
                <i
-                  className={
-                     isLiked === true
-                        ? "fas fa-heart"
-                        : "far fa-heart"
-                  }
+                  className={isLiked === true ? "fas fa-heart" : "far fa-heart"}
                   // className="far fa-heart"
-                  style={{ color: isLiked && "red" }}
-                  onClick={() => onLikePost(postId)}
+                  style={{ color: isLiked === true && "red" }}
+                  onClick={(e) => onLikePost(e, postId)}
                ></i>
                <p>{likeCount}</p>
             </div>
@@ -66,6 +68,9 @@ const mapStateToProps = (state) => ({
    followingPosts: state.followingPosts.isFollowingPosts,
 });
 
-export default connect(mapStateToProps, { likePost, getFollowingPosts, getMyRecentPosts })(
-   PostCard
-);
+export default connect(mapStateToProps, {
+   likePost,
+   getFollowingPosts,
+   renderSinglePost,
+   getMyRecentPosts,
+})(PostCard);
