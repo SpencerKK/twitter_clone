@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 
 // actions
 import { createPost } from "../actions/post";
+import { unrenderSinglePost } from "../actions/singlePostSubs";
 
 // components
 import Content from "./subcomponents/Content";
 import Connect from "./subcomponents/Connect";
 import SinglePost from "./subcomponents/SinglePost";
 
-const MainStream = ({ createPost, connectSub, singlePostSub }) => {
+const MainStream = ({ createPost, connectSub, unrenderSinglePost, singlePostSub }) => {
    const [postContent, setPostContent] = useState("");
    const textAreaRef = useRef(null);
    let heightLimit = 500;
@@ -48,7 +49,7 @@ const MainStream = ({ createPost, connectSub, singlePostSub }) => {
          return (
             <div className="single-post">
                <p>
-                  <i className="fas fa-arrow-left"></i>A Cool Post
+                  <i className="fas fa-arrow-left" onClick={() =>unrenderSinglePost()}></i>A Cool Post
                </p>
             </div>
          );
@@ -102,4 +103,4 @@ const mapStateToProps = (state) => ({
    singlePostSub: state.singlePostSubs.singlePost,
 });
 
-export default connect(mapStateToProps, { createPost })(MainStream);
+export default connect(mapStateToProps, { createPost, unrenderSinglePost })(MainStream);

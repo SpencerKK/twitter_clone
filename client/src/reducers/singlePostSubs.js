@@ -1,5 +1,6 @@
 import {
-    RENDER_SINGLE_POST
+    RENDER_SINGLE_POST,
+    UNRENDER_SINGLE_POST
 } from "../actions/types";
 
 const initialState = {
@@ -12,6 +13,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 singlePost: true
+            }
+        case UNRENDER_SINGLE_POST:
+            return {
+                ...state,
+                singlePost: false
             }
         default:
             return state;
