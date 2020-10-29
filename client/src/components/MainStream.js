@@ -24,7 +24,7 @@ const MainStream = ({ createPost, connectSub, singlePostSub }) => {
 
    const onPostSubmit = (e, postContent) => {
       if (postContent === "") {
-         alert("Cannot create an empty post!")
+         alert("Cannot create an empty post!");
       } else {
          createPost({ content: postContent });
          setPostContent("");
@@ -33,28 +33,35 @@ const MainStream = ({ createPost, connectSub, singlePostSub }) => {
 
    const renderOptions = () => {
       if (connectSub === true) {
-         return <Connect />
+         return <Connect />;
       } else if (singlePostSub === true) {
-         return <SinglePost />
+         return <SinglePost />;
       } else {
-         return <Content />
+         return <Content />;
       }
-   }
+   };
 
    const renderTitleOptions = () => {
       if (connectSub === true) {
-         return "Who To Follow"
+         return <p>Who To Follow</p>;
       } else if (singlePostSub === true) {
-         return "A Cool Post"
+         return (
+            <div className="single-post">
+               <p>
+                  <i className="fas fa-arrow-left"></i>A Cool Post
+               </p>
+            </div>
+         );
       } else {
-         return "Home"
+         return <p>Home</p>;
       }
-   }
+   };
 
-   return (
-      <div className="main-stream-wrapper">
-         <div className="main-stream-header">
-            <p>{renderTitleOptions()}</p>
+   const renderTextArea = () => {
+      if (singlePostSub === true) {
+         return null;
+      } else {
+         return (
             <form onSubmit={(e) => onPostSubmit(e, postContent)}>
                <div className="home-textarea-wrapper">
                   <div className="icon-holder">
@@ -75,19 +82,24 @@ const MainStream = ({ createPost, connectSub, singlePostSub }) => {
                   <input id="home-post-btn" type="submit" value="post" />
                </div>
             </form>
+         );
+      }
+   };
+
+   return (
+      <div className="main-stream-wrapper">
+         <div className="main-stream-header">
+            <div className="main-stream-title">{renderTitleOptions()}</div>
+            {renderTextArea()}
          </div>
-         <div className="post-stream">
-           {
-               renderOptions()
-            }
-         </div>
+         <div className="post-stream">{renderOptions()}</div>
       </div>
    );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
    connectSub: state.homeSubs.connect,
-   singlePostSub: state.singlePostSubs.singlePost
-})
+   singlePostSub: state.singlePostSubs.singlePost,
+});
 
 export default connect(mapStateToProps, { createPost })(MainStream);

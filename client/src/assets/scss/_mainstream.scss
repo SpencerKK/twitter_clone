@@ -1,5 +1,14 @@
   .main-stream-wrapper {
     .main-stream-header {
+
+      .main-stream-title {  
+        .single-post {
+          i {
+            margin-right: 1em;
+            color: $main-blue;
+          }
+        }
+      }
       p {
         font-size: 1.1em;
         font-weight: 800;
