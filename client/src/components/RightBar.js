@@ -29,7 +29,7 @@ const RightBar = ({ activeUsers, renderActiveUsers, getFollowingPosts, unrenderC
          <div className="user-list">
             <p id="who-to-follow">Who to Follow</p>
             {activeUsers &&
-               activeUsers.potentialFollowUsers.map((user) => (
+               activeUsers.potentialFollowUsers.slice(0, 6).map((user) => (
                   <div className="user-card">
                      <div className="user-card-text">
                         <i className="fas fa-user"></i>
