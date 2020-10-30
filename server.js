@@ -16,6 +16,7 @@ app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/posts", require("./routes/postRoutes"));
 app.use("/api/follows", require("./routes/followerRoutes"));
 app.use("/api/likes", require("./routes/likeRoutes"));
+app.use("/api/comments", require("./routes/commentRoutes"));
 
 // database
 db.sync({
