@@ -4,6 +4,10 @@ const authMid = require("../middleware/authMid");
 
 const { Comment } = require("../models");
 
+// post
+// api/comments/comment/:postId
+// comment on a post
+// private
 router.post(
    "/comment/:postId",
    [
@@ -32,5 +36,25 @@ router.post(
       }
    }
 );
+
+// get
+// api/comments/getPostComments/:postId
+// retrieves all the comments on some particular post
+// private
+router.get("/getPostComments/:postId", async (req, res) => {
+   let postId = req.params.postId;
+
+   try {
+      let commentsArray = await Comment.findAll({
+         where: {
+            postId: postId,
+         },
+      });
+
+      res.json({ commentsArray });
+   } catch (err) {
+      res.status(500).json({ msg: err.message });
+   }
+});
 
 module.exports = router;
