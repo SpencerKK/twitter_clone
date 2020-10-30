@@ -45,13 +45,13 @@ router.get("/getPostComments/:postId", async (req, res) => {
    let postId = req.params.postId;
 
    try {
-      let commentsArray = await Comment.findAll({
+      let postComments = await Comment.findAll({
          where: {
             postId: postId,
          },
       });
 
-      res.json({ commentsArray });
+      res.json({ postComments });
    } catch (err) {
       res.status(500).json({ msg: err.message });
    }
