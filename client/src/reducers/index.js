@@ -11,6 +11,7 @@ import activeUsers from "./Needs2Follow/activeUsers";
 
 // for rendering single post
 import singlePostSubs from "./singlePostSubs";
+import singlePost from "./singlePost";
 
 export default combineReducers({
     auth,
@@ -19,5 +20,6 @@ export default combineReducers({
     homeSubs,
     activeUsers,
     followingPosts,
-    myRecentPosts
+    myRecentPosts,
+    singlePost
 })

@@ -192,10 +192,10 @@ router.get("/getMyRecentPosts", authMid, async (req, res) => {
 // pulls up a single post you click on
 // private
 
-router.get("/singlePost/:id", authMid, async (req, res) => {
+router.get("/singlePost/:postId", authMid, async (req, res) => {
    try {
 
-      let postId = req.params.id;
+      let postId = req.params.postId;
 
       let post = await Post.findOne({
          where: {
