@@ -1,15 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
-const comments = ({ singlePostComments }) => {
-   if (singlePostComments !== null) {
-      singlePostComments.map(comment => (
-      <p>{comment.content}</p>
-      ))
-   } else {
-      return "nothing"
-   }
-}
+import CommentCard from "./CommentCard";
 
 const SinglePost = ({ singlePost, singlePostComments }) => {
    return (
@@ -39,20 +31,24 @@ const SinglePost = ({ singlePost, singlePostComments }) => {
                   <i className="far fa-heart"></i>
                   <i className="far fa-comment"></i>
                </div>
-               {
-                  singlePostComments.map(comment => (
-                  <p>{comment.content}</p>
-                  ))
-               }
+               {singlePostComments.length <= 0 ? (
+                  <p id="no-comments">Nothing here</p>
+               ) : (
+                  singlePostComments.map((comment) => 
+                     <CommentCard />
+                  )
+               )}
             </>
-         ) : <p>loading...</p>}
+         ) : (
+            <p>loading...</p>
+         )}
       </div>
    );
 };
 
 const mapStateToProps = (state) => ({
    singlePost: state.singlePost.singlePost,
-   singlePostComments: state.singlePostComments.postComments
+   singlePostComments: state.singlePostComments.postComments,
 });
 
 export default connect(mapStateToProps, {})(SinglePost);
