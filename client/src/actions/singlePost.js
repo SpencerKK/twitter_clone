@@ -14,9 +14,8 @@ export const getSinglePost = (postId) => async (dispatch) => {
          payload: res.data,
       });
    } catch (err) {
-      const errors = err.response.data.errors;
-      if (errors) {
-         errors.forEach((err) => alert(err.message));
+      if (err) {
+         alert(err);
       }
    }
 };
@@ -30,8 +29,8 @@ export const getPostComments = (postId) => async (dispatch) => {
 
       dispatch({
          type: GET_POST_COMMENTS,
-         payload: res.data
-      })
+         payload: res.data,
+      });
    } catch (err) {
       const errors = err.response.data.errors;
       if (errors) {

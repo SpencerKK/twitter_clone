@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-const SinglePost = ({ singlePost }) => {
+const comments = ({ singlePostComments }) => {
+   if (singlePostComments !== null) {
+      singlePostComments.map(comment => (
+      <p>{comment.content}</p>
+      ))
+   } else {
+      return "nothing"
+   }
+}
+
+const SinglePost = ({ singlePost, singlePostComments }) => {
    return (
       <div className="single-post">
-         {singlePost && singlePost !== null ? (
+         {singlePost !== null && singlePostComments !== null ? (
             <>
                <div className="post-header">
                   <div className="post-user-icon">
@@ -29,6 +39,11 @@ const SinglePost = ({ singlePost }) => {
                   <i className="far fa-heart"></i>
                   <i className="far fa-comment"></i>
                </div>
+               {
+                  singlePostComments.map(comment => (
+                  <p>{comment.content}</p>
+                  ))
+               }
             </>
          ) : <p>loading...</p>}
       </div>
@@ -37,6 +52,7 @@ const SinglePost = ({ singlePost }) => {
 
 const mapStateToProps = (state) => ({
    singlePost: state.singlePost.singlePost,
+   singlePostComments: state.singlePostComments.postComments
 });
 
 export default connect(mapStateToProps, {})(SinglePost);
