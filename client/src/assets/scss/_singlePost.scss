@@ -1,4 +1,11 @@
 .single-post {
+    #no-comments {
+        width: 15em;
+        text-align: center;
+        margin: 5em auto 0 auto;
+        font-size: 1.5em;
+        font-weight: 500;
+    }
     .post-header {
         display: flex;
         align-items: center;

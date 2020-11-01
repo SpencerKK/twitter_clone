@@ -32,7 +32,7 @@ const SinglePost = ({ singlePost, singlePostComments }) => {
                   <i className="far fa-comment"></i>
                </div>
                {singlePostComments.length <= 0 ? (
-                  <p id="no-comments">Nothing here</p>
+                  <p id="no-comments">Be The First Comment!</p>
                ) : (
                   singlePostComments.map((comment) => 
                      <CommentCard 
