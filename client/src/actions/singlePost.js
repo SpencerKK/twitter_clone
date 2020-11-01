@@ -1,4 +1,5 @@
 import { GET_SINGLE_POST } from "./types";
+import { GET_POST_COMMENTS } from "./types";
 import axios from "axios";
 
 // get single post
@@ -20,4 +21,21 @@ export const getSinglePost = (postId) => async (dispatch) => {
    }
 };
 
-// for some reason, passing postId into the getSinglePost function isn't being identified. I just need to refactor the code in postcard function i think
+// get post comments
+export const getPostComments = (postId) => async (dispatch) => {
+   try {
+      let res = await axios.get(
+         "http://localhost:5000/api/comments/getPostComments/" + postId
+      );
+
+      dispatch({
+         type: GET_POST_COMMENTS,
+         payload: res.data
+      })
+   } catch (err) {
+      const errors = err.response.data.errors;
+      if (errors) {
+         errors.forEach((err) => alert(err.message));
+      }
+   }
+};

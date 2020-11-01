@@ -7,6 +7,7 @@ import { getFollowingPosts } from "../../actions/followingPosts";
 import { getMyRecentPosts } from "../../actions/myRecentPosts";
 import { renderSinglePost } from "../../actions/singlePostSubs";
 import { getSinglePost } from "../../actions/singlePost";
+import { getPostComments } from "../../actions/singlePost";
 
 const PostCard = ({
    screenName,
@@ -18,6 +19,7 @@ const PostCard = ({
    getMyRecentPosts,
    renderSinglePost,
    getSinglePost,
+   getPostComments,
    followingPosts,
    likePost,
 }) => {
@@ -30,6 +32,7 @@ const PostCard = ({
 
    const onRenderPost = (postId) => {
       getSinglePost(postId);
+      getPostComments(postId);
       renderSinglePost();
    };
 
@@ -80,5 +83,6 @@ export default connect(mapStateToProps, {
    getFollowingPosts,
    renderSinglePost,
    getSinglePost,
+   getPostComments,
    getMyRecentPosts,
 })(PostCard);
