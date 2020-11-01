@@ -35,7 +35,10 @@ const SinglePost = ({ singlePost, singlePostComments }) => {
                   <p id="no-comments">Nothing here</p>
                ) : (
                   singlePostComments.map((comment) => 
-                     <CommentCard />
+                     <CommentCard 
+                        screenName={comment.screenName}
+                        content={comment.content}
+                     />
                   )
                )}
             </>

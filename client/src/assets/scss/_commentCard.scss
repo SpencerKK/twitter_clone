@@ -1,0 +1,32 @@
+.comment-card {
+    display: flex;
+    border-bottom: 1px solid $border-color;
+    padding: 1em 0;
+    align-items: center;
+    .comment-user-icon {
+        .fa-user {
+            font-size: 1.5em;
+            background: $border-color;
+            padding: 0.5em;
+            color: #70747c;
+            border-radius: 50%;
+            margin: 0 0.5em;
+        }
+    }
+
+    .comment-content {
+        .comment-card-screenName {
+            p {
+                font-weight: 600;
+                font-size: 1.1em;
+                margin: 0 0 0.5em 0;
+            }
+        }
+
+        .comment-text {
+            p {
+                margin: 0;
+            }
+        }
+    }
+}
