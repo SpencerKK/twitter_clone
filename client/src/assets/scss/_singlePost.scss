@@ -40,7 +40,8 @@
         border-top: 1px solid $border-color;
         border-bottom: 1px solid $border-color;
         margin-top: 1em;
-        
+        height: 3em;
+        line-height: 3em;
 
         #post-likes, #post-comments {
             display: flex;
@@ -55,6 +56,7 @@
 
     .post-actions {
         padding: 0.4em;
+        height: 3em;
 
         i {
             font-size: 1.1em;

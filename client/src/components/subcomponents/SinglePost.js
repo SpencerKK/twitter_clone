@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import CommentCard from "./CommentCard";
 
 const SinglePost = ({ singlePost, singlePostComments }) => {
+   const [modal, setModal] = useState(false);
+   const toggle = () => setModal(!modal);
+
    return (
       <div className="single-post">
          {singlePost !== null && singlePostComments !== null ? (
@@ -29,17 +32,35 @@ const SinglePost = ({ singlePost, singlePostComments }) => {
                </div>
                <div className="post-actions">
                   <i className="far fa-heart"></i>
-                  <i className="far fa-comment"></i>
+                  <i className="far fa-comment" onClick={toggle}></i>
                </div>
+               <>
+                  <Modal isOpen={modal} toggle={toggle}>
+                     <ModalHeader toggle={toggle}></ModalHeader>
+                     <ModalBody>
+                        <textarea style={{ width: "100%", border: "none", resize: "none" }}>
+                           Post Your Reply
+                        </textarea>
+                     </ModalBody>
+                     <ModalFooter>
+                        <Button color="primary" onClick={toggle}>
+                           Do Something
+                        </Button>
+                        <Button color="secondary" onClick={toggle}>
+                           Cancel
+                        </Button>
+                     </ModalFooter>
+                  </Modal>
+               </>
                {singlePostComments.length <= 0 ? (
                   <p id="no-comments">Be The First Comment!</p>
                ) : (
-                  singlePostComments.map((comment) => 
-                     <CommentCard 
+                  singlePostComments.map((comment) => (
+                     <CommentCard
                         screenName={comment.screenName}
                         content={comment.content}
                      />
-                  )
+                  ))
                )}
             </>
          ) : (
