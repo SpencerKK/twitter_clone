@@ -2,7 +2,21 @@ import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
 import CommentCard from "./CommentCard";
 
-const SinglePost = ({ singlePost, singlePostComments }) => {
+// actions
+import { postComment } from "../../actions/comment";
+import { getPostComments } from "../../actions/singlePost";
+import { getSinglePost } from "../../actions/singlePost";
+import { renderSinglePost } from "../../actions/singlePostSubs";
+
+const SinglePost = ({
+   singlePost,
+   singlePostComments,
+   postComment,
+   getPostComments,
+   getSinglePost,
+   renderSinglePost,
+}) => {
+   const [postContent, setPostContent] = useState(null);
    const textAreaRef = useRef(null);
    let heightLimit = 500;
 
@@ -11,7 +25,7 @@ const SinglePost = ({ singlePost, singlePostComments }) => {
       textAreaRef.current.style.height =
          Math.min(textAreaRef.current.scrollHeight, heightLimit) + "px";
 
-      // setPostContent(e.target.value);
+      setPostContent(e.target.value);
    };
 
    // TextArea height ^ Modal stuff v
@@ -20,11 +34,21 @@ const SinglePost = ({ singlePost, singlePostComments }) => {
 
    const openModal = () => {
       setModalStatus("block");
-   }
+   };
 
    const closeModal = () => {
       setModalStatus("none");
-   }
+   };
+
+   const onCommentSubmit = ({ singlePost }) => {
+      let content = postContent;
+      let postId = singlePost.id;
+      postComment({ content, postId });
+      getPostComments(postId);
+      getSinglePost(postId);
+      renderSinglePost(postId);
+      console.log(postContent);
+   };
 
    return (
       <div className="single-post">
@@ -51,14 +75,17 @@ const SinglePost = ({ singlePost, singlePostComments }) => {
                </div>
                <div className="post-actions">
                   <i className="far fa-heart"></i>
-                  <i
-                     className="far fa-comment"
-                     onClick={() => openModal()}
-                  ></i>
+                  <i className="far fa-comment" onClick={() => openModal()}></i>
                </div>
-               <div className="comment-modal-wrapper" style={{ display: modalStatus }} >
+               <div
+                  className="comment-modal-wrapper"
+                  style={{ display: modalStatus }}
+               >
                   <div className="comment-modal">
-                     <i className="fas fa-times" onClick={() => closeModal()}></i>
+                     <i
+                        className="fas fa-times"
+                        onClick={() => closeModal()}
+                     ></i>
                      <div className="post-header">
                         <div className="post-user-icon">
                            <i className="fas fa-user"></i>
@@ -81,7 +108,11 @@ const SinglePost = ({ singlePost, singlePostComments }) => {
                         </div>
                      </div>
                      <div className="modal-submit-wrapper">
-                        <button>Reply</button>
+                        <button
+                           onClick={() => onCommentSubmit({ singlePost })}
+                        >
+                           Reply
+                        </button>
                      </div>
                   </div>
                </div>
@@ -108,4 +139,9 @@ const mapStateToProps = (state) => ({
    singlePostComments: state.singlePostComments.postComments,
 });
 
-export default connect(mapStateToProps, {})(SinglePost);
+export default connect(mapStateToProps, {
+   postComment,
+   getPostComments,
+   getSinglePost,
+   renderSinglePost,
+})(SinglePost);

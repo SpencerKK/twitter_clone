@@ -15,6 +15,7 @@ export const GET_SINGLE_POST = "GET_SINGLE_POST";
 
 // comments
 export const GET_POST_COMMENTS = "GET_POST_COMMENTS";
+export const POST_COMMENT = "POST_COMMENT";
 
 // follow
 export const GET_FOLLOWING_POSTS = "GET_FOLLOWING_POSTS";
