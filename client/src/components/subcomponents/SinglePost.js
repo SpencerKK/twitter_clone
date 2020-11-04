@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
 import CommentCard from "./CommentCard";
 
 const SinglePost = ({ singlePost, singlePostComments }) => {
+   const textAreaRef = useRef(null);
+   let heightLimit = 500;
+
+   const onAreaType = (e) => {
+      textAreaRef.current.style.height = "";
+      textAreaRef.current.style.height =
+         Math.min(textAreaRef.current.scrollHeight, heightLimit) + "px";
+
+      // setPostContent(e.target.value);
+   };
+
    return (
       <div className="single-post">
          {singlePost !== null && singlePostComments !== null ? (
@@ -49,6 +60,16 @@ const SinglePost = ({ singlePost, singlePostComments }) => {
                         <div className="post-user-icon">
                            <i className="fas fa-user"></i>
                         </div>
+                        <div className="comment-textarea-wrapper">
+                           <textarea
+                              ref={textAreaRef}
+                              placeholder="Post Your Reply"
+                              onChange={(e) => onAreaType(e)}
+                           ></textarea>
+                        </div>
+                     </div>
+                     <div className="modal-submit-wrapper">
+                        <button>Reply</button>
                      </div>
                   </div>
                </div>

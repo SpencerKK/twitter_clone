@@ -58,7 +58,7 @@
     .comment-modal-wrapper {
         // display: none;
         position: fixed;
-        background: rgba(34, 34, 34, 0.4);
+        background: rgba(34, 34, 34, 0.6);
         left: 0;
         top: 0;
         width: 100%; /* Full width */
@@ -74,10 +74,11 @@
             }
 
             background: #fff;
-            width: 37em;
+            width: 35em;
             margin: 0 auto;
             margin-top: 5em;
-            height: 25em;
+            overflow-y: auto;
+            padding-bottom: 1em;
             border-radius: 20px;
 
             .post-header {
@@ -88,8 +89,9 @@
 
             .post-body {
                 margin-left: 1.4em;
-                padding-left: 1em;
+                padding-left: 1.5em;
                 border-left: 3px solid $border-color;
+                padding-bottom: 0.5em;
                 p {
                     font-size: 0.7em;
                     margin-right: 2em;
@@ -97,6 +99,7 @@
             }
 
             .comment-area {
+                display: flex;
                 .post-user-icon {
                     i {
                         font-size: 1.5em;
@@ -105,7 +108,42 @@
                         color: #70747c;
                         border-radius: 50%;
                         margin-left: 0.5em;
+                        margin-top: 0.4em;
                     }
+                }
+
+                .comment-textarea-wrapper {
+                    background: none;
+                    width: 100%;
+                    margin-right: 2em;
+
+                    textarea {
+                        overflow-y: hidden;
+                        resize: none;
+                        width: 95%;
+                        margin: 0.5em 0 0 0.7em;
+                        border: none;
+                        font-size: 1.2em;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+                }
+            }
+
+            .modal-submit-wrapper {
+                width: 100%;
+
+                button {
+                    color: #fff;
+                    background-color: $main-blue;
+                    border: none;
+                    float: right;
+                    margin: 0 2em 0 0;
+                    width: 5em;
+                    height: 2em;
+                    border-radius: 40px;
                 }
             }
         }
