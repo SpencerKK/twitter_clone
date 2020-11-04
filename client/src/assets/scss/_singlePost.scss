@@ -56,7 +56,7 @@
     }
 
     .comment-modal-wrapper {
-        // display: none;
+        display: none;
         position: fixed;
         background: rgba(34, 34, 34, 0.6);
         left: 0;
@@ -68,9 +68,20 @@
         .comment-modal {
 
             .fa-times {
-                margin: 1em 0 0 1.5em;
-                font-size: 1.3em;
+                margin: 1em 0 0 1em;
+                font-size: 1em;
                 color: $main-blue;
+                width: 2em;
+                height: 2em;
+                line-height: 2em;
+                text-align: center;
+                border-radius: 50%;
+                border: 0;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: #24aff03d;
+                }
             }
 
             background: #fff;
@@ -142,8 +153,16 @@
                     float: right;
                     margin: 0 2em 0 0;
                     width: 5em;
-                    height: 2em;
+                    height: 2.5em;
                     border-radius: 40px;
+
+                    &:focus {
+                        outline: none;
+                    }
+
+                    &:hover {
+                        background-color: #1e9dd8;
+                    }
                 }
             }
         }

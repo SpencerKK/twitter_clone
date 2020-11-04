@@ -14,6 +14,18 @@ const SinglePost = ({ singlePost, singlePostComments }) => {
       // setPostContent(e.target.value);
    };
 
+   // TextArea height ^ Modal stuff v
+
+   let [modalStatus, setModalStatus] = useState("none");
+
+   const openModal = () => {
+      setModalStatus("block");
+   }
+
+   const closeModal = () => {
+      setModalStatus("none");
+   }
+
    return (
       <div className="single-post">
          {singlePost !== null && singlePostComments !== null ? (
@@ -41,12 +53,12 @@ const SinglePost = ({ singlePost, singlePostComments }) => {
                   <i className="far fa-heart"></i>
                   <i
                      className="far fa-comment"
-                     onClick={() => console.log("toggled")}
+                     onClick={() => openModal()}
                   ></i>
                </div>
-               <div className="comment-modal-wrapper">
+               <div className="comment-modal-wrapper" style={{ display: modalStatus }} >
                   <div className="comment-modal">
-                     <i className="fas fa-times"></i>
+                     <i className="fas fa-times" onClick={() => closeModal()}></i>
                      <div className="post-header">
                         <div className="post-user-icon">
                            <i className="fas fa-user"></i>
