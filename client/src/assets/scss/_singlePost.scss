@@ -43,6 +43,7 @@
         margin-top: 1em;
         height: 3em;
         line-height: 3em;
+        align-items: center;
 
         #post-likes, #post-comments {
             display: flex;
@@ -169,8 +170,8 @@
     }
 
     .post-actions {
-        padding: 0.4em;
         height: 3em;
+        line-height: 3em;
 
         i {
             font-size: 1.1em;
