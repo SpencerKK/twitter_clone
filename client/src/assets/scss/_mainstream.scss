@@ -92,3 +92,10 @@
       }
     }
   }
+
+  @media screen and (max-width: 600px) {
+      .main-stream-wrapper {
+        height: 100vh;
+        overflow: hidden;
+      }
+  }
