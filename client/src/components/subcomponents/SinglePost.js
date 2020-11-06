@@ -44,10 +44,7 @@ const SinglePost = ({
       let content = postContent;
       let postId = singlePost.id;
       postComment({ content, postId });
-      getPostComments(postId);
-      getSinglePost(postId);
-      renderSinglePost(postId);
-      console.log(postContent);
+      closeModal();
    };
 
    return (
