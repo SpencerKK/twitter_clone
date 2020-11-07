@@ -81,19 +81,29 @@
 @media screen and (max-width: 600px) {
    .site-nav {
       bottom: 0;
+      position: fixed;
       height: 3em;
       border-top: 1px solid $border-color;
+      background-color: #fff;
+      z-index: 5;
 
       .menu-content-container {
          height: auto;
          width: 100%;
+         position: fixed;
+         bottom: 0;
+         height: 3em;
+         line-height: 3em;
+         background-color: #fff;
+         border-top: 1px solid $border-color;
+        z-index: 5;
+
 
          ul {
             width: auto;
             padding-left: 0;
             float: none;
             text-align: center;
-            background: transparent;
             margin: 0;
             width: 100%;
 

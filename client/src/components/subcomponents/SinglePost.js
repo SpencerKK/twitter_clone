@@ -123,6 +123,9 @@ const SinglePost = ({
                      />
                   ))
                )}
+               {singlePostComments.length <= 0 ? null : (
+                   <p id="end-of-comments">End of Comments</p>
+               )}
             </>
          ) : (
             <p>loading...</p>
