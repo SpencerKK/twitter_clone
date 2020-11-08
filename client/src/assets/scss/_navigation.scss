@@ -18,6 +18,10 @@
          #nav-site-logo {
             width: 1em;
             margin-left: 1.3em;
+
+            &:hover {
+               cursor: pointer;
+            }
          }
 
          li {

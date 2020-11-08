@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { logout } from "../actions/auth";
 import Logo from "../assets/images/coolr-logo.png";
 
+// actions
+import { unrenderSinglePost } from "../actions/singlePostSubs";
+
 const navLinks = [
    {
       linkName: "Home",
@@ -31,12 +34,14 @@ const navLinks = [
    },
 ];
 
-const Navigation = ({ logout }) => {
+const Navigation = ({ logout, unrenderSinglePost }) => {
    const listAction = (link) => {
-      if (link.linkName !== "Logout") {
-         return;
+      if (link.linkName === "Logout") {
+         logout()
+      } else if (link.linkName === "Home") {
+         unrenderSinglePost()
       } else {
-         logout();
+         alert("works")
       }
    };
 
@@ -44,7 +49,7 @@ const Navigation = ({ logout }) => {
       <nav className="site-nav">
          <div className="menu-content-container">
             <ul>
-               <img src={Logo} id="nav-site-logo" />
+               <img src={Logo} id="nav-site-logo" onClick={() => unrenderSinglePost()} />
                {navLinks.map((link, i) => (
                   <li onClick={() => listAction(link)} key={i}>
                      <Link className="wide" to={link.path}>
@@ -59,4 +64,4 @@ const Navigation = ({ logout }) => {
    );
 };
 
-export default connect(null, { logout })(Navigation);
+export default connect(null, { logout, unrenderSinglePost })(Navigation);
