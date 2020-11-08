@@ -18,6 +18,8 @@ app.use("/api/follows", require("./routes/followerRoutes"));
 app.use("/api/likes", require("./routes/likeRoutes"));
 app.use("/api/comments", require("./routes/commentRoutes"));
 
+// just a test. Commiting from new machine
+
 // database
 db.sync({
   logging: console.log,
