@@ -7,6 +7,7 @@ import { postComment } from "../../actions/comment";
 import { getPostComments } from "../../actions/singlePost";
 import { getSinglePost } from "../../actions/singlePost";
 import { renderSinglePost } from "../../actions/singlePostSubs";
+import { likePost } from "../../actions/likes";
 
 const SinglePost = ({
    singlePost,
@@ -14,6 +15,7 @@ const SinglePost = ({
    postCommentCount,
    singlePostComments,
    postComment,
+   likePost,
    getPostComments,
    getSinglePost,
    renderSinglePost,
@@ -41,6 +43,13 @@ const SinglePost = ({
    const closeModal = () => {
       setModalStatus("none");
    };
+
+   const onLikePost = ({ singlePost }) => {
+      let postId = singlePost.id;
+      likePost(postId);
+      getSinglePost(postId);
+      // right now, the updating of the like count on singlePost is acting janky. Will update soon
+   }
 
    const onCommentSubmit = ({ singlePost }) => {
       let content = postContent;
@@ -74,7 +83,7 @@ const SinglePost = ({
                   </div>
                </div>
                <div className="post-actions">
-                  <i className="far fa-heart"></i>
+                  <i className="far fa-heart" onClick={() => onLikePost({singlePost})}></i>
                   <i className="far fa-comment" onClick={() => openModal()}></i>
                </div>
                <div
@@ -149,4 +158,5 @@ export default connect(mapStateToProps, {
    getPostComments,
    getSinglePost,
    renderSinglePost,
+   likePost
 })(SinglePost);
