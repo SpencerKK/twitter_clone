@@ -15,6 +15,7 @@ const PostCard = ({
    postId,
    isLiked,
    likeCount,
+   commentCount,
    getFollowingPosts,
    getMyRecentPosts,
    renderSinglePost,
@@ -58,7 +59,7 @@ const PostCard = ({
          <div className="post-respose-opt">
             <div className="post-option-wrapper">
                <i className="far fa-comment"></i>
-               <p>450</p>
+               <p>{commentCount}</p>
             </div>
             <div className="post-option-wrapper">
                <i

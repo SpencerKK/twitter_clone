@@ -4,10 +4,7 @@ const authMid = require("../middleware/authMid");
 const { Op } = require("sequelize");
 
 
-const { User } = require("../models");
-const { Post } = require("../models");
-const { Followers } = require("../models");
-const { Likes } = require("../models");
+const { User, Post, Comment, Followers, Likes } = require("../models");
 const { findAndCountAll, sequelize } = require("../models/User");
 
 // post
@@ -100,9 +97,21 @@ router.get("/getFollowingPosts", authMid, async (req, res) => {
          }
       })
 
+      // add total comments to each post
+      let commentGroups = await Comment.findAll({
+         group: ["postId"],
+         attributes: {
+            include: [
+               [sequelize.fn("COUNT", sequelize.col("postId")), "commentCount"]
+            ],
+            exclude: ["id", "content", "screenName", "createdAt", "updatedAt", "userId"]
+         }
+      })
+
       let postArray = combinedPosts.map(post => {
          let theLikes = likeGroups.find(({ postId }) => post.id === postId);
-         return { ...post, ...theLikes }
+         let theComments = commentGroups.find(({postId}) => post.id === postId);
+         return { ...post, ...theLikes, ...theComments }
       })
 
 

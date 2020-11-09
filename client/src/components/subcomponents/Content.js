@@ -44,6 +44,7 @@ const Content = ({
                            screenName={post.screenName}
                            isLiked={post.isLiked}
                            likeCount={post.likeCount}
+                           commentCount={post.commentCount}
                         />
                      ))}
                </div>
@@ -55,6 +56,7 @@ const Content = ({
                         screenName={post.screenName}
                         isLiked={post.isLiked}
                         likeCount={post.likeCount}
+                        commentCount={post.commentCount}
                      />
                   ))}
             </>
