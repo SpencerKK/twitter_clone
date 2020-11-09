@@ -61,6 +61,11 @@ const Content = ({
                   ))}
             </>
          )}
+         {
+            followingPosts && followingPosts.length <= 0 ? null : (
+               <p id="end-of-posts">End of Posts</p>
+            )
+         }
       </div>
    );
 };
