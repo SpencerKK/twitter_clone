@@ -10,6 +10,8 @@ import { renderSinglePost } from "../../actions/singlePostSubs";
 
 const SinglePost = ({
    singlePost,
+   postLikeCount,
+   postCommentCount,
    singlePostComments,
    postComment,
    getPostComments,
@@ -62,11 +64,11 @@ const SinglePost = ({
                </div>
                <div className="post-data">
                   <div id="post-likes">
-                     <p className="count">1.8k</p>
+                     <p className="count">{postLikeCount}</p>
                      <p>Likes</p>
                   </div>
                   <div id="post-comments">
-                     <p className="count">103</p>
+                     <p className="count">{postCommentCount}</p>
                      <p>Comments</p>
                   </div>
                </div>
@@ -136,6 +138,8 @@ const SinglePost = ({
 
 const mapStateToProps = (state) => ({
    singlePost: state.singlePost.singlePost,
+   postLikeCount: state.singlePost.postLikeCount,
+   postCommentCount: state.singlePost.postCommentCount,
    singlePostComments: state.singlePostComments.postComments,
 });
 

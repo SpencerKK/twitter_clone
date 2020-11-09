@@ -212,7 +212,22 @@ router.get("/singlePost/:postId", authMid, async (req, res) => {
          }
       })
 
-      res.json({ post });
+      let postLikes = await Likes.findAll({
+         where: {
+            postId
+         }
+      })
+
+      let postComments = await Comment.findAll({
+         where: {
+            postId
+         }
+      })
+
+      let postLikeCount = postLikes.length;
+      let postCommentCount = postComments.length;
+
+      res.json({ post, postLikeCount, postCommentCount });
       
    } catch (err) {
       res.status(500).json({ msg: err.message })

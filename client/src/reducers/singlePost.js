@@ -11,7 +11,9 @@ export default (state = initialState, action) => {
         case GET_SINGLE_POST:
             return {
                 ...state,
-                singlePost: action.payload.post
+                singlePost: action.payload.post,
+                postLikeCount: action.payload.postLikeCount,
+                postCommentCount: action.payload.postCommentCount
             }
         default:
             return state;
