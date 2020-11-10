@@ -9,8 +9,6 @@ export const LOGOUT = "LOGOUT";
 // post
 export const CREATE_POST_SUCCESS = "CREATE_POST_SUCCESS";
 export const CREATE_POST_FAIL = "CREATE_POST_FAIL";
-export const RENDER_SINGLE_POST = "RENDER_SINGLE_POST";
-export const UNRENDER_SINGLE_POST = "UNRENDER_SINGLE_POST";
 export const GET_SINGLE_POST = "GET_SINGLE_POST";
 
 // comments
@@ -31,3 +29,9 @@ export const UNRENDER_CONNECT = "UNRENDER_CONNECT";
 export const RENDER_ACTIVE_USERS = "RENDER_ACTIVE_USERS";
 
 export const NEW_USER_FOLLOWS = "NEW_USER_FOLLOWS";
+
+// rendering different components
+export const RENDER_SINGLE_POST = "RENDER_SINGLE_POST";
+export const UNRENDER_SINGLE_POST = "UNRENDER_SINGLE_POST";
+export const RENDER_LIKED_POST = "RENDER_LIKED_POST";
+export const UNRENDER_LIKED_POST = "UNRENDER_LIKED_POST";

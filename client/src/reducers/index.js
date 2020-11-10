@@ -15,14 +15,18 @@ import singlePostSubs from "./singlePostSubs";
 import singlePost from "./singlePost";
 import singlePostComments from "./singlePostComments";
 
+// liked post subs
+import likedPostSubs from "./likedPostSubs";
+
 export default combineReducers({
     auth,
     post,
-    singlePostSubs,
-    homeSubs,
     activeUsers,
     followingPosts,
     myRecentPosts,
     singlePost,
-    singlePostComments
+    singlePostComments,
+    singlePostSubs,
+    likedPostSubs,
+    homeSubs
 })

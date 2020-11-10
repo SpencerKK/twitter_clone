@@ -6,6 +6,8 @@ import Logo from "../assets/images/coolr-logo.png";
 
 // actions
 import { unrenderSinglePost } from "../actions/singlePostSubs";
+import { renderLikedPost } from "../actions/likedPostsSubs";
+import { unrenderLikedPost } from "../actions/likedPostsSubs";
 
 const navLinks = [
    {
@@ -34,25 +36,35 @@ const navLinks = [
    },
 ];
 
-const Navigation = ({ logout, unrenderSinglePost }) => {
+const Navigation = ({ logout, unrenderSinglePost, unrenderLikedPost, renderLikedPost }) => {
+
    const listAction = (link) => {
       if (link.linkName === "Logout") {
          logout()
       } else if (link.linkName === "Home") {
-         unrenderSinglePost()
+         unrenderSinglePost();
+         unrenderLikedPost();
+      } else if (link.linkName === "Liked") {
+         renderLikedPost();
+         unrenderSinglePost();
       } else {
          alert("works")
       }
    };
 
+   const logoAction = () => {
+      unrenderSinglePost();
+      unrenderLikedPost();
+   }
+
    return (
       <nav className="site-nav">
          <div className="menu-content-container">
             <ul>
-               <img src={Logo} id="nav-site-logo" onClick={() => unrenderSinglePost()} />
+               <img src={Logo} id="nav-site-logo" onClick={() => logoAction()} />
                {navLinks.map((link, i) => (
                   <li onClick={() => listAction(link)} key={i}>
-                     <Link className="wide" to={link.path}>
+                     <Link className="wide">
                         <i className={link.linkIcon}></i>
                         <p>{link.linkName}</p>
                      </Link>
@@ -64,4 +76,4 @@ const Navigation = ({ logout, unrenderSinglePost }) => {
    );
 };
 
-export default connect(null, { logout, unrenderSinglePost })(Navigation);
+export default connect(null, { logout, unrenderSinglePost, renderLikedPost, unrenderLikedPost })(Navigation);

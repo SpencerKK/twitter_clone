@@ -9,8 +9,9 @@ import { unrenderSinglePost } from "../actions/singlePostSubs";
 import Content from "./subcomponents/Content";
 import Connect from "./subcomponents/Connect";
 import SinglePost from "./subcomponents/SinglePost";
+import LikedPost from "./subcomponents/LikedPost";
 
-const MainStream = ({ createPost, connectSub, unrenderSinglePost, singlePostSub }) => {
+const MainStream = ({ createPost, connectSub, unrenderSinglePost, singlePostSub, likedPostSub }) => {
    const [postContent, setPostContent] = useState("");
    const textAreaRef = useRef(null);
    let heightLimit = 500;
@@ -37,6 +38,8 @@ const MainStream = ({ createPost, connectSub, unrenderSinglePost, singlePostSub 
          return <Connect />;
       } else if (singlePostSub === true) {
          return <SinglePost />;
+      } else if (likedPostSub === true) {
+         return <LikedPost />
       } else {
          return <Content />;
       }
@@ -101,6 +104,7 @@ const MainStream = ({ createPost, connectSub, unrenderSinglePost, singlePostSub 
 const mapStateToProps = (state) => ({
    connectSub: state.homeSubs.connect,
    singlePostSub: state.singlePostSubs.singlePost,
+   likedPostSub: state.likedPostSubs.likedPost
 });
 
 export default connect(mapStateToProps, { createPost, unrenderSinglePost })(MainStream);
