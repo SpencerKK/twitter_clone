@@ -22,6 +22,7 @@ export const GET_MY_RECENT_POSTS = "GET_MY_RECENT_POSTS";
 
 // likes
 export const LIKE_POST = "LIKE_POST";
+export const GET_LIKED_POSTS = "GET_LIKED_POSTS";
 
 // for new users needing a list of active users to follow
 export const RENDER_CONNECT = "RENDER_CONNECT";
