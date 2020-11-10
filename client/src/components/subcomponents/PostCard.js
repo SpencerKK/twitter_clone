@@ -26,9 +26,10 @@ const PostCard = ({
 }) => {
    const onLikePost = (e, postId) => {
       e.stopPropagation();
-      likePost(postId);
-      getFollowingPosts();
-      getMyRecentPosts();
+      likePost(postId).then(() => {
+         getFollowingPosts();
+         getMyRecentPosts();
+      })
    };
 
    const onRenderPost = (postId) => {
@@ -64,7 +65,6 @@ const PostCard = ({
             <div className="post-option-wrapper">
                <i
                   className={isLiked === true ? "fas fa-heart" : "far fa-heart"}
-                  // className="far fa-heart"
                   style={{ color: isLiked === true && "red" }}
                   onClick={(e) => onLikePost(e, postId)}
                ></i>
