@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 // actions
 import { createPost } from "../actions/post";
 import { unrenderSinglePost } from "../actions/singlePostSubs";
+import { unrenderLikedPost } from "../actions/likedPostsSubs";
 
 // components
 import Content from "./subcomponents/Content";
@@ -11,7 +12,7 @@ import Connect from "./subcomponents/Connect";
 import SinglePost from "./subcomponents/SinglePost";
 import LikedPost from "./subcomponents/LikedPost";
 
-const MainStream = ({ createPost, connectSub, unrenderSinglePost, singlePostSub, likedPostSub }) => {
+const MainStream = ({ createPost, connectSub, unrenderSinglePost, unrenderLikedPost, singlePostSub, likedPostSub }) => {
    const [postContent, setPostContent] = useState("");
    const textAreaRef = useRef(null);
    let heightLimit = 500;
@@ -56,13 +57,21 @@ const MainStream = ({ createPost, connectSub, unrenderSinglePost, singlePostSub,
                </p>
             </div>
          );
+      } else if (likedPostSub === true) {
+         return (
+            <div className="liked-posts">
+               <p>
+                  <i className="fas fa-arrow-left" onClick={() => unrenderLikedPost() }></i>Posts You've Liked
+               </p>
+            </div>
+         )
       } else {
          return <p>Home</p>;
       }
    };
 
    const renderTextArea = () => {
-      if (singlePostSub === true) {
+      if (singlePostSub === true || likedPostSub === true) {
          return null;
       } else {
          return (
@@ -107,4 +116,4 @@ const mapStateToProps = (state) => ({
    likedPostSub: state.likedPostSubs.likedPost
 });
 
-export default connect(mapStateToProps, { createPost, unrenderSinglePost })(MainStream);
+export default connect(mapStateToProps, { createPost, unrenderSinglePost, unrenderLikedPost })(MainStream);
