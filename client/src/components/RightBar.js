@@ -8,19 +8,19 @@ import { getFollowingPosts } from "../actions/followingPosts";
 import { unrenderConnectSubs } from "../actions/Needs2Follow/homeSubs";
 
 const RightBar = ({ activeUsers, renderActiveUsers, getFollowingPosts, unrenderConnectSubs, followUser }) => {
-    let [loading, setLoading] = useState(true);
 
    useEffect(() => {
       renderActiveUsers();
       getFollowingPosts();
-   }, [loading]);
+   }, []);
 
    const onFollow = (e, followed_id) => {
        e.preventDefault();
-       followUser(followed_id);
-       setLoading(!loading);
-       getFollowingPosts();
-       renderActiveUsers();
+       followUser(followed_id).then(() => {
+         getFollowingPosts();
+         renderActiveUsers();
+       })
+       
        unrenderConnectSubs();
    }
 
