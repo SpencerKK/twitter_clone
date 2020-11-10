@@ -20,6 +20,7 @@ const SinglePost = ({
   likePost,
   getPostComments,
   getSinglePost,
+  isLiked,
   renderSinglePost,
 }) => {
   const [postContent, setPostContent] = useState(null);
@@ -88,7 +89,8 @@ const SinglePost = ({
           <div className="post-actions">
             <i className="far fa-comment" onClick={() => openModal()}></i>
             <i
-              className="far fa-heart"
+              className={isLiked ? "fas fa-heart" : "far fa-heart"}
+              style={{ color: isLiked && "red" }}
               onClick={() => onLikePost({ singlePost })}
             ></i>
           </div>
@@ -149,6 +151,7 @@ const SinglePost = ({
 
 const mapStateToProps = (state) => ({
   singlePost: state.singlePost.singlePost,
+  isLiked: state.singlePost.isLiked,
   postLikeCount: state.singlePost.postLikeCount,
   postCommentCount: state.singlePost.postCommentCount,
   singlePostComments: state.singlePostComments.postComments,

@@ -12,6 +12,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 singlePost: action.payload.post,
+                isLiked: action.payload.isLiked,
                 postLikeCount: action.payload.postLikeCount,
                 postCommentCount: action.payload.postCommentCount
             }

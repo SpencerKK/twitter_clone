@@ -205,6 +205,7 @@ router.get("/singlePost/:postId", authMid, async (req, res) => {
    try {
 
       let postId = req.params.postId;
+      let userId = req.user.id
 
       let post = await Post.findOne({
          where: {
@@ -224,10 +225,19 @@ router.get("/singlePost/:postId", authMid, async (req, res) => {
          }
       })
 
+      let myLike = await Likes.findOne({
+         where: {
+            postId,
+            userId
+         }
+      })
+
+      let isLiked = myLike === null ? false : true
+
       let postLikeCount = postLikes.length;
       let postCommentCount = postComments.length;
 
-      res.json({ post, postLikeCount, postCommentCount });
+      res.json({ post, postLikeCount, postCommentCount, isLiked });
       
    } catch (err) {
       res.status(500).json({ msg: err.message })
