@@ -51,6 +51,16 @@ router.get("/likedPosts", authMid, async (req, res) => {
 
     let likedPostIds = allMyLikes.map((n) => n.postId);
 
+    // like count on all posts
+    let likeCounts = await Likes.findAll({
+      raw: true,
+      group: ["postId"],
+      where: {
+        id: likedPostIds
+      }
+    })
+
+    // all posts I have liked
     let likedPosts = await Post.findAll({
         where: {
             id: likedPostIds
