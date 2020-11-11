@@ -60,7 +60,9 @@ const SinglePost = ({
     let postId = singlePost.id;
     postComment({ content, postId });
     getFollowingPosts().then(() => {
-      getSinglePost(postId);
+      getPostComments(postId).then(() => {
+        getSinglePost(postId);
+      });
     });
     closeModal();
   };
