@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { User, Post, Likes, Comment } = require("../models");
 const authMid = require("../middleware/authMid");
-const {sequelize} = require('../models/User');
+const { sequelize } = require("../models/User");
 
 // post
 // /api/likes/like/:id
@@ -67,20 +67,27 @@ router.get("/likedPosts", authMid, async (req, res) => {
          },
       });
 
-    //   comment count on all posts
-    let commentCounts = await Comment.findAll({
-        raw: true,
-        group: ["postId"],
-        where: {
-            postId: likedPostIds
-        },
-        attributes: {
+      //   comment count on all posts
+      let commentCounts = await Comment.findAll({
+         raw: true,
+         group: ["postId"],
+         where: {
+            postId: likedPostIds,
+         },
+         attributes: {
             include: [
-                [sequelize.fn("COUNT", sequelize.col("postId")), "commentCount"],
-             ],
-             exclude: ["createdAt", "updatedAt", "userId", "id", "content", "screenName"],
-        }
-    })
+               [sequelize.fn("COUNT", sequelize.col("postId")), "commentCount"],
+            ],
+            exclude: [
+               "createdAt",
+               "updatedAt",
+               "userId",
+               "id",
+               "content",
+               "screenName",
+            ],
+         },
+      });
 
       // all posts I have liked
       let likedPosts = await Post.findAll({
@@ -89,17 +96,21 @@ router.get("/likedPosts", authMid, async (req, res) => {
          },
       });
 
-      let postArray = likedPosts.map(post => {
-          theLikes = likeCounts.find(({ postId }) => post.id === postId);
-          theComments = commentCounts.find(({ postId }) => post.id === postId);
-          return { ...post, ...theLikes, ...theComments }
-      })
+      let postArray = likedPosts.map((post) => {
+         theLikes = likeCounts.find(({ postId }) => post.id === postId);
+         theComments = commentCounts.find(({ postId }) => post.id === postId);
+         return { ...post, ...theLikes, ...theComments };
+      });
 
-    //   get rid of unneeded duplicate post id 
-      postArray.map(post => {
-          delete post.postId;
-          return post;
-      })
+      //   get rid of unneeded duplicate post id
+      postArray.map((post) => {
+         delete post.postId;
+         return post;
+      });
+
+      for (var i = 0; i < postArray.length; i++) {
+         postArray[i] = Object.assign({ isLiked: true }, postArray[i]);
+      }
 
       res.json({ postArray });
    } catch (err) {
