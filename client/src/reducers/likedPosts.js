@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     case GET_LIKED_POSTS:
       return {
         ...state,
-        likedPosts: action.payload.likedPosts,
+        likedPosts: action.payload.postArray,
       };
     default:
       return state;
