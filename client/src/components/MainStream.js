@@ -5,14 +5,25 @@ import { connect } from "react-redux";
 import { createPost } from "../actions/post";
 import { unrenderSinglePost } from "../actions/singlePostSubs";
 import { unrenderLikedPost } from "../actions/likedPostsSubs";
+import { unrenderProfile } from "../actions/profileSubs";
 
 // components
 import Content from "./subcomponents/Content";
 import Connect from "./subcomponents/Connect";
 import SinglePost from "./subcomponents/SinglePost";
 import LikedPost from "./subcomponents/LikedPost";
+import Profile from "./subcomponents/Profile";
 
-const MainStream = ({ createPost, connectSub, unrenderSinglePost, unrenderLikedPost, singlePostSub, likedPostSub }) => {
+const MainStream = ({
+   createPost,
+   connectSub,
+   unrenderSinglePost,
+   unrenderLikedPost,
+   unrenderProfile,
+   singlePostSub,
+   likedPostSub,
+   profileSub,
+}) => {
    const [postContent, setPostContent] = useState("");
    const textAreaRef = useRef(null);
    let heightLimit = 500;
@@ -40,7 +51,9 @@ const MainStream = ({ createPost, connectSub, unrenderSinglePost, unrenderLikedP
       } else if (singlePostSub === true) {
          return <SinglePost />;
       } else if (likedPostSub === true) {
-         return <LikedPost />
+         return <LikedPost />;
+      } else if (profileSub === true) {
+          return <Profile />
       } else {
          return <Content />;
       }
@@ -53,7 +66,11 @@ const MainStream = ({ createPost, connectSub, unrenderSinglePost, unrenderLikedP
          return (
             <div className="single-post">
                <p>
-                  <i className="fas fa-arrow-left" onClick={() =>unrenderSinglePost()}></i>A Cool Post
+                  <i
+                     className="fas fa-arrow-left"
+                     onClick={() => unrenderSinglePost()}
+                  ></i>
+                  A Cool Post
                </p>
             </div>
          );
@@ -61,17 +78,33 @@ const MainStream = ({ createPost, connectSub, unrenderSinglePost, unrenderLikedP
          return (
             <div className="liked-posts">
                <p>
-                  <i className="fas fa-arrow-left" onClick={() => unrenderLikedPost() }></i>Posts You've Liked
+                  <i
+                     className="fas fa-arrow-left"
+                     onClick={() => unrenderLikedPost()}
+                  ></i>
+                  Posts You've Liked
                </p>
             </div>
-         )
+         );
+      } else if (profileSub === true) {
+          return (
+              <div className="profile">
+                  <p>
+                  <i
+                     className="fas fa-arrow-left"
+                     onClick={() => unrenderProfile()}
+                  ></i>
+                  Profile
+                  </p>
+              </div>
+          )
       } else {
          return <p>Home</p>;
       }
    };
 
    const renderTextArea = () => {
-      if (singlePostSub === true || likedPostSub === true) {
+      if (singlePostSub === true || likedPostSub === true || profileSub === true) {
          return null;
       } else {
          return (
@@ -113,7 +146,13 @@ const MainStream = ({ createPost, connectSub, unrenderSinglePost, unrenderLikedP
 const mapStateToProps = (state) => ({
    connectSub: state.homeSubs.connect,
    singlePostSub: state.singlePostSubs.singlePost,
-   likedPostSub: state.likedPostSubs.likedPost
+   likedPostSub: state.likedPostSubs.likedPost,
+   profileSub: state.profileSubs.profilePage,
 });
 
-export default connect(mapStateToProps, { createPost, unrenderSinglePost, unrenderLikedPost })(MainStream);
+export default connect(mapStateToProps, {
+   createPost,
+   unrenderSinglePost,
+   unrenderLikedPost,
+   unrenderProfile
+})(MainStream);

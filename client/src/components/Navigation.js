@@ -8,6 +8,8 @@ import Logo from "../assets/images/coolr-logo.png";
 import { unrenderSinglePost } from "../actions/singlePostSubs";
 import { renderLikedPost } from "../actions/likedPostsSubs";
 import { unrenderLikedPost } from "../actions/likedPostsSubs";
+import { renderProfile } from "../actions/profileSubs";
+import { unrenderProfile } from "../actions/profileSubs";
 
 const navLinks = [
    {
@@ -36,7 +38,7 @@ const navLinks = [
    },
 ];
 
-const Navigation = ({ logout, unrenderSinglePost, unrenderLikedPost, renderLikedPost }) => {
+const Navigation = ({ logout, unrenderSinglePost, unrenderLikedPost, renderLikedPost, renderProfile, unrenderProfile }) => {
 
    const listAction = (link) => {
       if (link.linkName === "Logout") {
@@ -44,9 +46,15 @@ const Navigation = ({ logout, unrenderSinglePost, unrenderLikedPost, renderLiked
       } else if (link.linkName === "Home") {
          unrenderSinglePost();
          unrenderLikedPost();
+         unrenderProfile();
       } else if (link.linkName === "Liked") {
          renderLikedPost();
          unrenderSinglePost();
+         unrenderProfile();
+      } else if (link.linkName === "Profile") {
+          renderProfile();
+          unrenderSinglePost();
+          unrenderLikedPost();
       } else {
          alert("works")
       }
@@ -55,6 +63,7 @@ const Navigation = ({ logout, unrenderSinglePost, unrenderLikedPost, renderLiked
    const logoAction = () => {
       unrenderSinglePost();
       unrenderLikedPost();
+      unrenderProfile();
    }
 
    return (
@@ -76,4 +85,4 @@ const Navigation = ({ logout, unrenderSinglePost, unrenderLikedPost, renderLiked
    );
 };
 
-export default connect(null, { logout, unrenderSinglePost, renderLikedPost, unrenderLikedPost })(Navigation);
+export default connect(null, { logout, unrenderSinglePost, renderLikedPost, unrenderLikedPost, renderProfile, unrenderProfile })(Navigation);

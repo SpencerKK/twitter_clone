@@ -2,7 +2,7 @@
     .main-stream-header {
 
       .main-stream-title {  
-        .single-post, .liked-posts { 
+        .single-post,  .liked-posts, .profile { 
           i {
             margin-right: 1em;
             color: $main-blue;
@@ -16,6 +16,9 @@
           }
         }
       }
+
+      // right now adding profile to the mainstream title along with the other 2 options causes trouble
+
       p {
         font-size: 1.1em;
         font-weight: 800;
