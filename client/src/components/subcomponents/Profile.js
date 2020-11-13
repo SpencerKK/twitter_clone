@@ -20,6 +20,15 @@ const Profile = () => {
                     <button>Edit Profile</button>
                 </div>
             </div>
+            <div className="user-posts">
+                <p id="posts-title">Posts</p>
+                <div className="post-roll">
+                    <p>post</p>
+                    <p>post</p>
+                    <p>post</p>
+                    <p>post</p>
+                </div>
+            </div>
         </div>
     )
 }

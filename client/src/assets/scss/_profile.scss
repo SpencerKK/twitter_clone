@@ -69,4 +69,20 @@
             }
         }
     }
+
+    .user-posts {
+        #posts-title {
+            border-bottom: 2px solid $main-blue;
+            margin: 0;
+            width: 8em;
+            text-align: center;
+            padding-bottom: 0.2em;
+            font-weight: 700;
+            color: $main-blue;
+        }
+
+        .post-roll {
+            border-top: 1px solid $border-color;
+        }
+    }
 }
