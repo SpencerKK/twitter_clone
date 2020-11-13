@@ -1,0 +1,72 @@
+.profile {
+    .profile-background {
+        position: relative;
+
+        .background-color {
+            background-color: salmon;
+            height: 12em;
+            position: relative;
+        }
+        
+        .user-card {
+            transform: translateY(-4em);
+            padding: 0 2em;
+            i {
+                padding: 1em;
+                font-size: 2.5em;
+                background-color: $border-color;
+                border-radius: 50%;
+                border: 5px solid #fff;
+            }
+
+            #sn {
+                margin: 0;
+                font-size: 1.2em;
+                font-weight: 700;
+                margin-left: 0.5em;
+            }
+
+            .bio {
+                margin: 0.5em 0 0 0.5em;
+                p {
+                    line-height: 1.4;
+                    margin: 0;
+                }
+            }
+
+            .quick-stats {
+                display: flex;
+
+                p {
+                    margin: 1em 1em 0 0.5em;
+                    span {
+                        font-weight: 700;
+                        margin-right: 0.3em;
+                    }
+                }
+            }
+
+            button {
+                position: absolute;
+                top: 5em;
+                right: 3em;
+                background-color: transparent;
+                color: $main-blue;
+                border: 1px solid $main-blue;
+                border-radius: 20px;
+                font-size: 1.01em;
+                font-weight: 700;
+                padding: 0.5em;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: #DFF1FC;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+}
