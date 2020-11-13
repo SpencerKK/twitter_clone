@@ -10,6 +10,7 @@ import { renderLikedPost } from "../actions/likedPostsSubs";
 import { unrenderLikedPost } from "../actions/likedPostsSubs";
 import { renderProfile } from "../actions/profileSubs";
 import { unrenderProfile } from "../actions/profileSubs";
+import { getProfile } from "../actions/profile";
 
 const navLinks = [
    {
@@ -38,11 +39,19 @@ const navLinks = [
    },
 ];
 
-const Navigation = ({ logout, unrenderSinglePost, unrenderLikedPost, renderLikedPost, renderProfile, unrenderProfile }) => {
-
+const Navigation = ({
+   logout,
+   unrenderSinglePost,
+   unrenderLikedPost,
+   renderLikedPost,
+   renderProfile,
+   unrenderProfile,
+   user,
+   getProfile,
+}) => {
    const listAction = (link) => {
       if (link.linkName === "Logout") {
-         logout()
+         logout();
       } else if (link.linkName === "Home") {
          unrenderSinglePost();
          unrenderLikedPost();
@@ -52,11 +61,13 @@ const Navigation = ({ logout, unrenderSinglePost, unrenderLikedPost, renderLiked
          unrenderSinglePost();
          unrenderProfile();
       } else if (link.linkName === "Profile") {
-          renderProfile();
-          unrenderSinglePost();
-          unrenderLikedPost();
+        getProfile(user.id).then(() => {
+            renderProfile();
+            unrenderSinglePost();
+            unrenderLikedPost();
+         });
       } else {
-         alert("works")
+         alert("works");
       }
    };
 
@@ -64,13 +75,17 @@ const Navigation = ({ logout, unrenderSinglePost, unrenderLikedPost, renderLiked
       unrenderSinglePost();
       unrenderLikedPost();
       unrenderProfile();
-   }
+   };
 
    return (
       <nav className="site-nav">
          <div className="menu-content-container">
             <ul>
-               <img src={Logo} id="nav-site-logo" onClick={() => logoAction()} />
+               <img
+                  src={Logo}
+                  id="nav-site-logo"
+                  onClick={() => logoAction()}
+               />
                {navLinks.map((link, i) => (
                   <li onClick={() => listAction(link)} key={i}>
                      <Link className="wide">
@@ -85,4 +100,16 @@ const Navigation = ({ logout, unrenderSinglePost, unrenderLikedPost, renderLiked
    );
 };
 
-export default connect(null, { logout, unrenderSinglePost, renderLikedPost, unrenderLikedPost, renderProfile, unrenderProfile })(Navigation);
+const mapStateToProps = (state) => ({
+   user: state.auth.user
+});
+
+export default connect(mapStateToProps, {
+   logout,
+   unrenderSinglePost,
+   renderLikedPost,
+   unrenderLikedPost,
+   renderProfile,
+   unrenderProfile,
+   getProfile,
+})(Navigation);

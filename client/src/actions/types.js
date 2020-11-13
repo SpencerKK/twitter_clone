@@ -31,6 +31,9 @@ export const RENDER_ACTIVE_USERS = "RENDER_ACTIVE_USERS";
 
 export const NEW_USER_FOLLOWS = "NEW_USER_FOLLOWS";
 
+
+export const GET_PROFILE = "GET_PROFILE"
+
 // rendering different components
 export const RENDER_SINGLE_POST = "RENDER_SINGLE_POST";
 export const UNRENDER_SINGLE_POST = "UNRENDER_SINGLE_POST";

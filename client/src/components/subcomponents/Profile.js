@@ -1,13 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const Profile = () => {
+const Profile = ({ profile }) => {
     return (
         <div className="profile">
             <div className="profile-background">
                 <div className="background-color"></div>
                 <div className="user-card">
                     <i className="fas fa-user"></i>
-                    <p id="sn">screenName</p>
+                    <p id="sn">{profile.screenName}</p>
                     <div className="bio">
                         <p>
                         Excepteur dolore esse velit commodo amet cillum ea duis ad dolore dolor consectetur.
@@ -33,4 +34,8 @@ const Profile = () => {
     )
 }
 
-export default Profile;
+const mapStateToProps = state => ({
+    profile: state.profile.profile
+})
+
+export default connect(mapStateToProps)(Profile);

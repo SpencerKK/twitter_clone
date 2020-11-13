@@ -17,6 +17,7 @@ app.use("/api/posts", require("./routes/postRoutes"));
 app.use("/api/follows", require("./routes/followerRoutes"));
 app.use("/api/likes", require("./routes/likeRoutes"));
 app.use("/api/comments", require("./routes/commentRoutes"));
+app.use("/api/profile", require("./routes/profileRoutes"));
 
 // just a test. Commiting from new machine
 

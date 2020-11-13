@@ -21,6 +21,7 @@ import likedPosts from "./likedPosts";
 
 // profile subs
 import profileSubs from "./profileSubs";
+import profile from "./profile";
 
 export default combineReducers({
     auth,
@@ -34,5 +35,6 @@ export default combineReducers({
     singlePostSubs,
     likedPostSubs,
     profileSubs,
-    homeSubs
+    homeSubs,
+    profile
 })
