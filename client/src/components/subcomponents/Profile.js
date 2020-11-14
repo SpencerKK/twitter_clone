@@ -35,6 +35,7 @@ const Profile = ({ profile, userPosts }) => {
                                 commentCount={post.commentCount}
                                 likeCount={post.likeCount}
                                 isLiked={post.isLiked}
+                                userId={post.userId}
                             />
                         )) : <p>This user has no posts!</p>
                     }
