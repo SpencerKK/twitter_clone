@@ -59,6 +59,12 @@ const MainStream = ({
       }
    };
 
+   const bringHome = () => {
+    unrenderSinglePost();
+    unrenderLikedPost();
+    unrenderProfile();
+   }
+
    const renderTitleOptions = () => {
       if (connectSub === true) {
          return <p>Who To Follow</p>;
@@ -68,7 +74,7 @@ const MainStream = ({
                <p>
                   <i
                      className="fas fa-arrow-left"
-                     onClick={() => unrenderSinglePost()}
+                     onClick={() => bringHome()}
                   ></i>
                   A Cool Post
                </p>
@@ -80,7 +86,7 @@ const MainStream = ({
                <p>
                   <i
                      className="fas fa-arrow-left"
-                     onClick={() => unrenderLikedPost()}
+                     onClick={() => bringHome()}
                   ></i>
                   Posts You've Liked
                </p>
@@ -92,7 +98,7 @@ const MainStream = ({
                   <p>
                   <i
                      className="fas fa-arrow-left"
-                     onClick={() => unrenderProfile()}
+                     onClick={() => bringHome()}
                   ></i>
                   Profile
                   </p>
