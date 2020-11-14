@@ -32,6 +32,9 @@ const Profile = ({ profile, userPosts }) => {
                                 screenName={post.screenName}
                                 postId={post.id}
                                 postContent={post.content}
+                                commentCount={post.commentCount}
+                                likeCount={post.likeCount}
+                                isLiked={post.isLiked}
                             />
                         )) : <p>This user has no posts!</p>
                     }
