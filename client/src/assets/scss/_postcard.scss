@@ -31,6 +31,11 @@
                margin: 0;
                padding-bottom: 0.5em;
                font-weight: 700;
+               display: inline-block;
+
+               &:hover {
+                   text-decoration: underline;
+               }
             }
          }
 
@@ -58,6 +63,12 @@
             font-size: 0.9em;
             padding: 0.5em;
             border-radius: 50%;
+          }
+
+          .fa-comment {
+              &:hover {
+                  background-color: #24aff04f;
+              }
           }
 
           .fa-heart {

@@ -9,11 +9,15 @@ import { renderSinglePost } from "../../actions/singlePostSubs";
 import { getSinglePost } from "../../actions/singlePost";
 import { getPostComments } from "../../actions/singlePost";
 import { getLikedPosts } from "../../actions/likedPosts";
+import { getProfile } from "../../actions/profile";
+import { renderProfile } from "../../actions/profileSubs";
+import { unrenderLikedPost } from "../../actions/likedPostsSubs";
 
 const PostCard = ({
    screenName,
    postContent,
    postId,
+   userId,
    isLiked,
    likeCount,
    commentCount,
@@ -23,7 +27,9 @@ const PostCard = ({
    getSinglePost,
    getPostComments,
    getLikedPosts,
-   followingPosts,
+   getProfile,
+   renderProfile,
+   unrenderLikedPost,
    likePost,
 }) => {
    const onLikePost = (e, postId) => {
@@ -32,13 +38,21 @@ const PostCard = ({
          getFollowingPosts();
          getMyRecentPosts();
          getLikedPosts();
-      })
+      });
    };
 
    const onRenderPost = (postId) => {
       getSinglePost(postId);
       getPostComments(postId);
       renderSinglePost();
+   };
+
+   const onRenderProfile = (e, userId) => {
+      e.stopPropagation();
+      getProfile(userId).then(() => {
+         renderProfile();
+         unrenderLikedPost();
+      });
    };
 
    return (
@@ -53,7 +67,9 @@ const PostCard = ({
             </div>
             <div className="post-content">
                <div className="post-card-username">
-                  <p>{screenName}</p>
+                  <p onClick={(e) => onRenderProfile(e, userId)}>
+                     {screenName}
+                  </p>
                </div>
                <div className="post-text">
                   <p>{postContent}</p>
@@ -78,16 +94,15 @@ const PostCard = ({
    );
 };
 
-const mapStateToProps = (state) => ({
-   followingPosts: state.followingPosts.isFollowingPosts,
-});
-
-export default connect(mapStateToProps, {
+export default connect(null, {
    likePost,
    getFollowingPosts,
    renderSinglePost,
    getSinglePost,
    getPostComments,
    getMyRecentPosts,
-   getLikedPosts
+   getLikedPosts,
+   unrenderLikedPost,
+   getProfile,
+   renderProfile,
 })(PostCard);

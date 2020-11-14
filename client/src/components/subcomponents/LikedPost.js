@@ -21,6 +21,7 @@ const LikedPost = ({ getLikedPosts, likedPosts }) => {
             isLiked={post.isLiked}
             likeCount={post.likeCount}
             commentCount={post.commentCount}
+            userId={post.userId}
           />
         ))
       ) : (

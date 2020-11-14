@@ -45,6 +45,7 @@ const Content = ({
                            isLiked={post.isLiked}
                            likeCount={post.likeCount}
                            commentCount={post.commentCount}
+                           userId={post.userId}
                         />
                      ))}
                </div>
@@ -57,6 +58,7 @@ const Content = ({
                         isLiked={post.isLiked}
                         likeCount={post.likeCount}
                         commentCount={post.commentCount}
+                        userId={post.userId}
                      />
                   ))}
             </>
