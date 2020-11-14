@@ -8,6 +8,7 @@ import { getPostComments } from "../../actions/singlePost";
 import { getSinglePost } from "../../actions/singlePost";
 import { renderSinglePost } from "../../actions/singlePostSubs";
 import { unrenderSinglePost } from "../../actions/singlePostSubs";
+import { unrenderLikedPost } from "../../actions/likedPostsSubs";
 import { likePost } from "../../actions/likes";
 import { getFollowingPosts } from "../../actions/followingPosts";
 import { renderProfile } from "../../actions/profileSubs";
@@ -26,6 +27,7 @@ const SinglePost = ({
    isLiked,
    renderProfile,
    unrenderSinglePost,
+   unrenderLikedPost,
    getProfile,
 }) => {
    const [postContent, setPostContent] = useState(null);
@@ -77,6 +79,7 @@ const SinglePost = ({
       getProfile(userId).then(() => {
          renderProfile();
          unrenderSinglePost();
+         unrenderLikedPost();
       });
    };
 
@@ -190,6 +193,7 @@ export default connect(mapStateToProps, {
    getSinglePost,
    renderSinglePost,
    unrenderSinglePost,
+   unrenderLikedPost,
    renderProfile,
    getProfile,
    likePost,
