@@ -16,7 +16,14 @@ router.get("/getProfile/:userId", authMid, async (req, res) => {
          },
       });
 
-      res.json({ user });
+      let userPosts = await Post.findAll({
+         where: {
+            userId
+         },
+         order: [["id", "DESC"]]
+      })
+
+      res.json({ user, userPosts });
    } catch (err) {
       res.status(500).json({ msg: err.message });
    }

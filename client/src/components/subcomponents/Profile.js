@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import PostCard from "./PostCard";
 
-const Profile = ({ profile }) => {
+const Profile = ({ profile, userPosts }) => {
     return (
         <div className="profile">
             <div className="profile-background">
@@ -24,10 +25,16 @@ const Profile = ({ profile }) => {
             <div className="user-posts">
                 <p id="posts-title">Posts</p>
                 <div className="post-roll">
-                    <p>post</p>
-                    <p>post</p>
-                    <p>post</p>
-                    <p>post</p>
+                    {
+                        userPosts && userPosts.length >= 1 ? 
+                        userPosts.map(post => (
+                            <PostCard 
+                                screenName={post.screenName}
+                                postId={post.id}
+                                postContent={post.content}
+                            />
+                        )) : <p>This user has no posts!</p>
+                    }
                 </div>
             </div>
         </div>
@@ -35,7 +42,8 @@ const Profile = ({ profile }) => {
 }
 
 const mapStateToProps = state => ({
-    profile: state.profile.profile
+    profile: state.profile.profile,
+    userPosts: state.profile.userPosts
 })
 
 export default connect(mapStateToProps)(Profile);
