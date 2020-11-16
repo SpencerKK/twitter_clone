@@ -38,6 +38,7 @@ const PostCard = ({
          getFollowingPosts();
          getMyRecentPosts();
          getLikedPosts();
+         getProfile(userId);
       });
    };
 
