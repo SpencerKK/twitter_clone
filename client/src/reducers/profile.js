@@ -2,7 +2,9 @@ import { GET_PROFILE } from "../actions/types";
 
 const initialState = {
    profile: null,
-   userPosts: null
+   userPosts: null,
+   followingCount: null,
+   followerCount: null
 };
 
 export default (state = initialState, action) => {
@@ -11,7 +13,9 @@ export default (state = initialState, action) => {
          return {
             ...state,
             profile: action.payload.user,
-            userPosts: action.payload.userPosts
+            userPosts: action.payload.userPosts,
+            followingCount: action.payload.isFollowingCount,
+            followerCount: action.payload.followerCount
          };
       default:
          return state;

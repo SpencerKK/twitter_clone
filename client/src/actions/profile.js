@@ -13,10 +13,8 @@ export const getProfile = (userId) => async (dispatch) => {
         })
 
     } catch (err) {
-        const errors = err.response.data.errors;
-
-        if (errors) {
-            errors.forEach(err => alert(err.message))
+        if (err) {
+            alert(err)
         }
     }
 }

@@ -118,7 +118,7 @@ router.get("/getProfile/:userId", authMid, async (req, res) => {
       })
 
       isFollowingCount = isFollowingCount.filter((n) => n.follower_id === parseInt(userId));
-      followerCount = followerCount.filter(n => n.followed_id === parseInt(userId))
+      followerCount = followerCount.filter(n => n.followed_id === parseInt(userId));
 
       res.json({ user, userPosts, isFollowingCount, followerCount });
    } catch (err) {
