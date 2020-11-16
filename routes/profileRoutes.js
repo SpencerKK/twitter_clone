@@ -120,6 +120,16 @@ router.get("/getProfile/:userId", authMid, async (req, res) => {
       isFollowingCount = isFollowingCount.filter((n) => n.follower_id === parseInt(userId));
       followerCount = followerCount.filter(n => n.followed_id === parseInt(userId));
 
+      if (isFollowingCount.length === 0) {
+         let followCountPlace = { followingCount: 0 };
+         isFollowingCount.push(followCountPlace);
+      }
+
+      if (followerCount.length === 0) {
+         let followerCountPlace = { followerCount: 0 };
+         followerCount.push(followerCountPlace);
+      }
+
       res.json({ user, userPosts, isFollowingCount, followerCount });
    } catch (err) {
       res.status(500).json({ msg: err.message });

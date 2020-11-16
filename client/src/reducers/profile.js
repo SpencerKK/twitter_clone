@@ -3,8 +3,8 @@ import { GET_PROFILE } from "../actions/types";
 const initialState = {
    profile: null,
    userPosts: null,
-   followingCount: null,
-   followerCount: null
+   followingCount: 0,
+   followerCount: 0
 };
 
 export default (state = initialState, action) => {
